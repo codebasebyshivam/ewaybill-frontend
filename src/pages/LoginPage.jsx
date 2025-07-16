@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Truck, Car, FileText, Receipt, Code, ScrollText, ArrowRight, Zap, Shield, Clock, BarChart3, Play, Pause, ChevronDown, Star, Users, Globe, Award } from 'lucide-react';
-import kats_logo from '../assets/kats_logo.svg';
+// import kats_logo from '../assets/kats_logo.svg';
 export default function HomePage() {
   const [activeService, setActiveService] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
