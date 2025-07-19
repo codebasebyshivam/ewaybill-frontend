@@ -11,14 +11,16 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
       },
       colors: {
-        t1: '#083E38',
-        t2: '#157B71',
-        h1: '#F0F0F0',
+        t1: '#0B9580',
+        t2: '#0D9488',
+        h1: '#1F2937',
+        body: '#4B5563',
         tertiary: '#000000',
       },
       backgroundColor: {
         t1: '#083E38',
         t2: '#157B71',
+        t3: '#ECFDF5',
         tertiary: '#000000',
       },
       backgroundImage: {
@@ -30,6 +32,7 @@ export default {
           #1F766E 76%,
           #1C6F67 100%
         )`,
+        'action-button-gradient': `linear-gradient(to right, #0d9488, #059669)`, // teal-600 to emerald-600
       },
     },
   },

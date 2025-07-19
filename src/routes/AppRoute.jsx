@@ -1,31 +1,61 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import SelectCompany from '../pages/SelectCompany';
-import PageNotFound from '../pages/PageNotFound';
-import NormalizeRoutes from './NormalizedRoute';
-import LoginPage from '../pages/LoginPage';
 
+
+// ✅ Lazy-load all routes
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const PageNotFound = lazy(() => import('../pages/PageNotFound'));
+const NormalizeRoutes = lazy(() => import('./NormalizedRoute')); // also lazy-load layout if heavy
+const Dashboard = lazy(()=> import('../pages/Dashboard'));
+
+
+// ✅ Router configuration
 const routes = createBrowserRouter([
   {
-    path: '*', // Match all routes first
-    element: <NormalizeRoutes />, // Normalize here
+    path: '*',
+    element: (
+      <Suspense fallback={<div>Loading route...</div>}>
+        <NormalizeRoutes />
+      </Suspense>
+    ),
+    errorElement: (
+      <Suspense fallback={<div>Loading Page Not Found...</div>}>
+        <PageNotFound />
+      </Suspense>
+    ),
     children: [
       {
-        path: 'select-company', // This matches `/`
-        element: <SelectCompany />,
-      },
-      {
         index: true,
-        element: <LoginPage />,
+        element: (
+          <Suspense fallback={<div>Loading Home...</div>}>
+            <HomePage />
+          </Suspense>
+        ),
       },
       {
-        path: '*', // Catch-all for unmatched routes
-        element: <PageNotFound />,
+        path: 'login',
+        element: (
+          <Suspense fallback={<div>Loading Login...</div>}>
+            <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <Suspense fallback={<div>Loading Dashboard...</div>}>
+            <Dashboard />
+          </Suspense>
+        ),
       },
     ],
   },
 ]);
 
+// ✅ App-level route wrapper
 export default function AppRoute() {
-  return <RouterProvider router={routes} />;
+  return (
+    <RouterProvider router={routes} />
+  );
 }

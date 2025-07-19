@@ -1,12 +1,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  // build:{
-  //   sourcemap:true
-  // },
+  plugins: [react(),visualizer({ open: true })],
+  build: {
+    sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: true,
+      mangle: true,
+    },
+  },
   server: {
     port: 5178,
     host: '0.0.0.0',
