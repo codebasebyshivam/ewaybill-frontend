@@ -1,5 +1,24 @@
-import React, { memo, useState, useEffect, useRef } from 'react';
-import { Eye, EyeOff, User, Lock, ArrowRight, Zap, CreditCard, Car, Truck, DollarSign, Smartphone, Shield, Users, Mail, Phone, Building, UserPlus, LogIn, CheckCircle, AlertCircle } from 'lucide-react';
+import { memo, useState, useEffect, useRef } from 'react';
+import {
+  Eye,
+  EyeOff,
+  User,
+  Lock,
+  Zap,
+  CreditCard,
+  Truck,
+  DollarSign,
+  Smartphone,
+  Shield,
+  Users,
+  Mail,
+  Phone,
+  Building,
+  UserPlus,
+  LogIn,
+  CheckCircle,
+  AlertCircle,
+} from 'lucide-react';
 import kats_logo from '../assets/kats_logo.svg';
 
 const features = [
@@ -8,31 +27,30 @@ const features = [
     title: 'EwayBill',
     desc: 'Digital transport documents',
     color: 'from-blue-500 to-blue-600',
-    stats: '50K+ users'
+    stats: '50K+ users',
   },
   {
     icon: Zap,
     title: 'FASTag',
     desc: 'Seamless toll payments',
     color: 'from-yellow-500 to-yellow-600',
-    stats: '1M+ transactions'
+    stats: '1M+ transactions',
   },
   {
     icon: Truck,
     title: 'RC',
     desc: 'Vehicle registration',
     color: 'from-purple-500 to-purple-600',
-    stats: '25K+ vehicles'
+    stats: '25K+ vehicles',
   },
   {
     icon: Building,
     title: 'Challan',
     desc: 'Traffic violation management',
     color: 'from-red-500 to-red-600',
-    stats: '10K+ resolved'
-  }
+    stats: '10K+ resolved',
+  },
 ];
-
 
 // Sample data for dropdowns (you can replace these with API calls or dynamic data)
 const companies = [
@@ -41,20 +59,14 @@ const companies = [
   { id: 3, name: 'Company C' },
 ];
 
-const financialYears = [
-  '2023-2024',
-  '2024-2025',
-  '2025-2026',
-];
+const financialYears = ['2023-2024', '2024-2025', '2025-2026'];
 
 const benefits = [
   { icon: Shield, text: 'Bank-level Security', delay: 0 },
   { icon: Zap, text: 'Lightning Fast Processing', delay: 0.2 },
   { icon: Users, text: '24/7 Premium Support', delay: 0.4 },
-  { icon: Smartphone, text: 'Mobile-First Experience', delay: 0.6 }
+  { icon: Smartphone, text: 'Mobile-First Experience', delay: 0.6 },
 ];
-
-
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -64,7 +76,6 @@ const LoginPage = () => {
   const [notification, setNotification] = useState(null);
   const [typingAnimation, setTypingAnimation] = useState('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
   const containerRef = useRef(null);
   // Login form state
@@ -72,7 +83,7 @@ const LoginPage = () => {
     company: '',
     financialYear: '',
     username: '',
-    password: ''
+    password: '',
   });
   // Register form state
   const [registerData, setRegisterData] = useState({
@@ -82,7 +93,7 @@ const LoginPage = () => {
     company: '',
     gstin: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   useEffect(() => {
@@ -92,8 +103,6 @@ const LoginPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-
-
   const handleLogin = async () => {
     setIsLoading(true);
 
@@ -102,14 +111,13 @@ const LoginPage = () => {
       setIsLoading(false);
       setNotification({
         type: 'success',
-        message: 'Login successful! Welcome back.'
+        message: 'Login successful! Welcome back.',
       });
 
       // Clear notification after 3 seconds
       setTimeout(() => setNotification(null), 3000);
     }, 2000);
   };
-
 
   // Mouse tracking for interactive effects
   useEffect(() => {
@@ -118,7 +126,7 @@ const LoginPage = () => {
         const rect = containerRef.current.getBoundingClientRect();
         setMousePosition({
           x: e.clientX - rect.left,
-          y: e.clientY - rect.top
+          y: e.clientY - rect.top,
         });
       }
     };
@@ -130,10 +138,9 @@ const LoginPage = () => {
     }
   }, []);
 
-
   // Typing animation for welcome text
   useEffect(() => {
-    const text = isLogin ? "Welcome Back" : 'Create Account';
+    const text = isLogin ? 'Welcome Back' : 'Create Account';
     let index = 0;
     const interval = setInterval(() => {
       setTypingAnimation(text.slice(0, index));
@@ -145,12 +152,11 @@ const LoginPage = () => {
     return () => clearInterval(interval);
   }, [isLogin]);
 
-
   const handleRegister = async () => {
     if (registerData.password !== registerData.confirmPassword) {
       setNotification({
         type: 'error',
-        message: 'Passwords do not match!'
+        message: 'Passwords do not match!',
       });
       setTimeout(() => setNotification(null), 3000);
       return;
@@ -163,7 +169,7 @@ const LoginPage = () => {
       setIsLoading(false);
       setNotification({
         type: 'success',
-        message: 'Registration successful! Please login.'
+        message: 'Registration successful! Please login.',
       });
 
       // Switch to login form after successful registration
@@ -177,7 +183,12 @@ const LoginPage = () => {
   const switchForm = () => {
     setIsLogin(!isLogin);
     setNotification(null);
-    setLoginData({ company: '', financialYear: '', username: '', password: '' });
+    setLoginData({
+      company: '',
+      financialYear: '',
+      username: '',
+      password: '',
+    });
     setRegisterData({
       fullName: '',
       email: '',
@@ -185,17 +196,21 @@ const LoginPage = () => {
       company: '',
       gstin: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
     });
   };
 
-
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[100dvh] bg-white">
       {/* Notification */}
       {notification && (
-        <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg flex items-center space-x-3 ${notification.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-          } transform transition-all duration-300`}>
+        <div
+          className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg flex items-center space-x-3 ${
+            notification.type === 'success'
+              ? 'bg-green-500 text-white'
+              : 'bg-red-500 text-white'
+          } transform transition-all duration-300`}
+        >
           {notification.type === 'success' ? (
             <CheckCircle className="w-5 h-5" />
           ) : (
@@ -205,8 +220,7 @@ const LoginPage = () => {
         </div>
       )}
 
-      <div className="grid lg:grid-cols-2 h-screen">
-
+      <div className="grid lg:grid-cols-2 h-[100dvh]">
         {/* Left Side - Login/Register Form */}
         <div className=" mx-auto w-full sm:w-3/4 lg:w-full  xl:w-3/4 p-4 lg:p-6 transform  transition-transform duration-300  flex item-center justify-center flex-col">
           {/* Logo */}
@@ -218,11 +232,13 @@ const LoginPage = () => {
                   <span className="animate-pulse text-md font-normal">|</span>
                 </h1>
                 <p className="text-gray-600 font-nunito">
-                  {isLogin ? 'Sign in to access your dashboard' : 'Join us to get started with our services'}
+                  {isLogin
+                    ? 'Sign in to access your dashboard'
+                    : 'Join us to get started with our services'}
                 </p>
               </div>
               <div className="w-12 h-12 bg-action-button-gradient rounded-xl flex items-center justify-center">
-                <img src={kats_logo} className='w-7 h-7' alt='kats_logo' />
+                <img src={kats_logo} className="w-7 h-7" alt="kats_logo" />
               </div>
             </div>
           </div>
@@ -230,19 +246,25 @@ const LoginPage = () => {
           {/* Form Toggle */}
           <div className="flex bg-gray-100 rounded-xl p-1 mb-5">
             <button
-              aria-label='Login Tab'
+              aria-label="Login Tab"
               onClick={() => setIsLogin(true)}
-              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${isLogin ? 'bg-action-button-gradient text-white shadow-sm' : 'text-gray-800 hover:text-gray-900'
-                }`}
+              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                isLogin
+                  ? 'bg-action-button-gradient text-white shadow-sm'
+                  : 'text-gray-800 hover:text-gray-900'
+              }`}
             >
               <LogIn className="w-4 h-4" />
               <span>Login</span>
             </button>
             <button
-              aria-label='Register Tab'
+              aria-label="Register Tab"
               onClick={() => setIsLogin(false)}
-              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${!isLogin ? 'bg-action-button-gradient text-white shadow-sm' : 'text-gray-800 hover:text-gray-900'
-                }`}
+              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                !isLogin
+                  ? 'bg-action-button-gradient text-white shadow-sm'
+                  : 'text-gray-800 hover:text-gray-900'
+              }`}
             >
               <UserPlus className="w-4 h-4" />
               <span>Register</span>
@@ -252,21 +274,35 @@ const LoginPage = () => {
           {/* Login Form */}
           {isLogin ? (
             <div className="space-y-5 animate-fadeIn">
-
               {/* Company Dropdown */}
               <div className="relative group">
-                <label htmlFor='company' className="block text-sm font-medium text-gray-700 mb-2 font-nunito">Select Company</label>
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700 mb-2 font-nunito"
+                >
+                  Select Company
+                </label>
                 <div className="relative">
                   <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                   <select
-                    id='company'
+                    id="company"
                     value={loginData.company}
-                    onChange={(e) => setLoginData({ ...loginData, company: e.target.value })}
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, company: e.target.value })
+                    }
                     className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                   >
-                    <option value="" className='text-gray-600'>Select a company</option>
+                    <option value="" className="text-gray-600">
+                      Select a company
+                    </option>
                     {companies.map((company) => (
-                      <option className='text-gray-800' key={company.id} value={company.id}>{company.name}</option>
+                      <option
+                        className="text-gray-800"
+                        key={company.id}
+                        value={company.id}
+                      >
+                        {company.name}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -274,31 +310,56 @@ const LoginPage = () => {
 
               {/* Financial Year Dropdown */}
               <div className="relative group">
-                <label htmlFor='financialYear' className="block text-sm font-medium text-gray-700 mb-2 font-nunito">Select Financial Year</label>
+                <label
+                  htmlFor="financialYear"
+                  className="block text-sm font-medium text-gray-700 mb-2 font-nunito"
+                >
+                  Select Financial Year
+                </label>
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                   <select
-                    id='financialYear'
+                    id="financialYear"
                     value={loginData.financialYear}
-                    onChange={(e) => setLoginData({ ...loginData, financialYear: e.target.value })}
+                    onChange={(e) =>
+                      setLoginData({
+                        ...loginData,
+                        financialYear: e.target.value,
+                      })
+                    }
                     className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                   >
-                    <option value="" className='text-gray-600'>Select financial year</option>
+                    <option value="" className="text-gray-600">
+                      Select financial year
+                    </option>
                     {financialYears.map((year, index) => (
-                      <option className='text-gray-800' key={index} value={year}>{year}</option>
+                      <option
+                        className="text-gray-800"
+                        key={index}
+                        value={year}
+                      >
+                        {year}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
               <div className="relative group">
-                <label htmlFor='username' className="block text-sm font-medium text-gray-700 mb-2 font-nunito">Username</label>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700 mb-2 font-nunito"
+                >
+                  Username
+                </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                   <input
                     type="text"
-                    id='username'
+                    id="username"
                     value={loginData.username}
-                    onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, username: e.target.value })
+                    }
                     className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                     placeholder="Enter your username"
                   />
@@ -306,14 +367,21 @@ const LoginPage = () => {
               </div>
 
               <div className="relative group">
-                <label htmlFor='password' className="block text-sm font-medium text-gray-700 mb-2 font-nunito">Password</label>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 mb-2 font-nunito"
+                >
+                  Password
+                </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                   <input
-                    id='password'
-                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={loginData.password}
-                    onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, password: e.target.value })
+                    }
                     className="outline-none w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                     placeholder="Enter your password"
                   />
@@ -323,25 +391,40 @@ const LoginPage = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-800  transition-colors"
                   >
-                    {showPassword ? <EyeOff className="w-7 h-7 p-1" /> : <Eye className="w-7 h-7 p-1 text-t2" />}
+                    {showPassword ? (
+                      <EyeOff className="w-7 h-7 p-1" />
+                    ) : (
+                      <Eye className="w-7 h-7 p-1 text-t2" />
+                    )}
                   </button>
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
-                <label htmlFor='remember me' className="flex items-center">
-                  <input id='remember me' type="checkbox" className="w-4 h-4 accent-t1 text-t1 hover:accent-t1 border-gray-300 rounded " />
-                  <span className="font-nunito ml-2 text-sm text-gray-600">Remember me</span>
+                <label htmlFor="remember me" className="flex items-center">
+                  <input
+                    id="remember me"
+                    type="checkbox"
+                    className="w-4 h-4 accent-t1 text-t1 hover:accent-t1 border-gray-300 rounded "
+                  />
+                  <span className="font-nunito ml-2 text-sm text-gray-600">
+                    Remember me
+                  </span>
                 </label>
-                <a href="#" className="font-nunito text-sm text-teal-800 hover:text-t1 transition-colors">
+                <a
+                  href="#"
+                  className="font-nunito text-sm text-teal-800 hover:text-t1 transition-colors"
+                >
                   Forgot password?
                 </a>
               </div>
 
               <button
-                aria-label='Login'
+                aria-label="Login"
                 onClick={handleLogin}
-                disabled={isLoading || !loginData.username || !loginData.password}
+                disabled={
+                  isLoading || !loginData.username || !loginData.password
+                }
                 className="font-nunito w-full bg-action-button-gradient text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isLoading ? (
@@ -359,14 +442,24 @@ const LoginPage = () => {
             <div className="w-full space-y-5 animate-fadeIn">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative group">
-                  <label htmlFor='fullname' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <label
+                    htmlFor="fullname"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Full Name
+                  </label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='fullname'
+                      id="fullname"
                       type="text"
                       value={registerData.fullName}
-                      onChange={(e) => setRegisterData({ ...registerData, fullName: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          fullName: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Enter full name"
                     />
@@ -374,14 +467,24 @@ const LoginPage = () => {
                 </div>
 
                 <div className="relative group">
-                  <label htmlFor='email' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <label
+                    htmlFor="email"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Email
+                  </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='email'
+                      id="email"
                       type="email"
                       value={registerData.email}
-                      onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          email: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Enter email"
                     />
@@ -391,14 +494,24 @@ const LoginPage = () => {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative group">
-                  <label htmlFor='phonenumber' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <label
+                    htmlFor="phonenumber"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Phone
+                  </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='phonenumber'
+                      id="phonenumber"
                       type="tel"
                       value={registerData.phone}
-                      onChange={(e) => setRegisterData({ ...registerData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          phone: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Enter phone"
                     />
@@ -406,14 +519,24 @@ const LoginPage = () => {
                 </div>
 
                 <div className="relative group">
-                  <label htmlFor='company' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Company</label>
+                  <label
+                    htmlFor="company"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Company
+                  </label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='company'
+                      id="company"
                       type="text"
                       value={registerData.company}
-                      onChange={(e) => setRegisterData({ ...registerData, company: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          company: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Enter company"
                     />
@@ -422,14 +545,24 @@ const LoginPage = () => {
               </div>
 
               <div className="relative group">
-                <label htmlFor='gstin' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Gstin</label>
+                <label
+                  htmlFor="gstin"
+                  className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Gstin
+                </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                   <input
-                    id='gstin'
+                    id="gstin"
                     type="text"
                     value={registerData.gstin}
-                    onChange={(e) => setRegisterData({ ...registerData, gstin: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterData({
+                        ...registerData,
+                        gstin: e.target.value,
+                      })
+                    }
                     className="outline-none w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                     placeholder="Enter gst number"
                   />
@@ -438,14 +571,24 @@ const LoginPage = () => {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative group">
-                  <label htmlFor='password' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Password</label>
+                  <label
+                    htmlFor="password"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Password
+                  </label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='password'
-                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
                       value={registerData.password}
-                      onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          password: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Create password"
                     />
@@ -455,46 +598,83 @@ const LoginPage = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-800  transition-colors"
                     >
-                      {showPassword ? <EyeOff className="w-7 h-7 p-1" /> : <Eye className="w-7 h-7 p-1 text-t2" />}
+                      {showPassword ? (
+                        <EyeOff className="w-7 h-7 p-1" />
+                      ) : (
+                        <Eye className="w-7 h-7 p-1 text-t2" />
+                      )}
                     </button>
                   </div>
                 </div>
 
                 <div className="relative group">
-                  <label htmlFor='confirm-password' className="font-nunito block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                  <label
+                    htmlFor="confirm-password"
+                    className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Confirm Password
+                  </label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
                     <input
-                      id='confirm-password'
-                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirm-password"
+                      type={showConfirmPassword ? 'text' : 'password'}
                       value={registerData.confirmPassword}
-                      onChange={(e) => setRegisterData({ ...registerData, confirmPassword: e.target.value })}
+                      onChange={(e) =>
+                        setRegisterData({
+                          ...registerData,
+                          confirmPassword: e.target.value,
+                        })
+                      }
                       className="outline-none w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 hover:border-emerald-300"
                       placeholder="Confirm password"
                     />
                     <button
                       aria-label={`${showConfirmPassword ? 'Show Password' : 'Hide Password'}`}
                       type="button"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-800  transition-colors"
                     >
-                      {showConfirmPassword ? <EyeOff className="w-7 h-7 p-1" /> : <Eye className="w-7 h-7 p-1 text-t2" />}
+                      {showConfirmPassword ? (
+                        <EyeOff className="w-7 h-7 p-1" />
+                      ) : (
+                        <Eye className="w-7 h-7 p-1 text-t2" />
+                      )}
                     </button>
                   </div>
                 </div>
               </div>
 
               <div className="flex items-center">
-                <input type="checkbox" className="w-4 h-4  border-gray-300 rounded  accent-t1 hover:accent-t2" />
+                <input
+                  type="checkbox"
+                  className="w-4 h-4  border-gray-300 rounded  accent-t1 hover:accent-t2"
+                />
                 <span className="font-nunito ml-2 text-sm text-gray-600">
-                  I agree to the <a href="#" className="text-t1 hover:text-t2">Terms of Service</a> and <a href="#" className="text-t1 hover:text-t2">Privacy Policy</a>
+                  I agree to the{' '}
+                  <a href="#" className="text-t1 hover:text-t2">
+                    Terms of Service
+                  </a>{' '}
+                  and{' '}
+                  <a href="#" className="text-t1 hover:text-t2">
+                    Privacy Policy
+                  </a>
                 </span>
               </div>
 
               <button
-                aria-label='Register Account'
+                aria-label="Register Account"
                 onClick={handleRegister}
-                disabled={isLoading || !registerData.fullName || !registerData.email || !registerData.gstin || !registerData.password || !registerData.confirmPassword}
+                disabled={
+                  isLoading ||
+                  !registerData.fullName ||
+                  !registerData.email ||
+                  !registerData.gstin ||
+                  !registerData.password ||
+                  !registerData.confirmPassword
+                }
                 className="font-nunito  w-full bg-action-button-gradient text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isLoading ? (
@@ -511,11 +691,7 @@ const LoginPage = () => {
         </div>
 
         {/* Right Section - Features */}
-        <div
-          className="hidden lg:block bg-action-button-gradient  p-8 md:p-12 text-white shadow-md relative overflow-hidden"
-        >
-
-
+        <div className="hidden lg:block bg-action-button-gradient  p-8 md:p-12 text-white shadow-md relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full transform translate-x-32 -translate-y-32"></div>
@@ -539,17 +715,27 @@ const LoginPage = () => {
                 return (
                   <div
                     key={index}
-                    className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 transform ${isActive ? 'scale-105 bg-white/20 shadow-lg' : 'hover:bg-white/15'
-                      }`}
+                    className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 transform ${
+                      isActive
+                        ? 'scale-105 bg-white/20 shadow-lg'
+                        : 'hover:bg-white/15'
+                    }`}
                   >
                     <div className="flex flex-col items-center text-center space-y-3">
-                      <div className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-white/30 scale-110' : ''
-                        }`}>
+                      <div
+                        className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                          isActive ? 'bg-white/30 scale-110' : ''
+                        }`}
+                      >
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">{feature.title}</h3>
-                        <p className="text-green-100 text-sm mt-1">{feature.desc}</p>
+                        <h3 className="font-semibold text-lg">
+                          {feature.title}
+                        </h3>
+                        <p className="text-green-100 text-sm mt-1">
+                          {feature.desc}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -562,13 +748,12 @@ const LoginPage = () => {
               {features.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentFeature ? 'bg-white w-6' : 'bg-white/40'
-                    }`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentFeature ? 'bg-white w-6' : 'bg-white/40'
+                  }`}
                 />
               ))}
             </div>
-
-
           </div>
         </div>
       </div>
@@ -587,6 +772,6 @@ const LoginPage = () => {
       `}</style>
     </div>
   );
-}
+};
 
 export default memo(LoginPage);
