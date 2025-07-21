@@ -13,7 +13,7 @@ import {
 import kats_logo from '../assets/kats_logo.svg';
 const Register = lazy(() => import('../components/layout/login.page/RegisterForm'));
 const Login = lazy(() => import('../components/layout/login.page/LoginForm'));
-
+ 
 // Memoized Feature Card component
 const FeatureCard = memo(({ feature, isActive }) => {
   const Icon = feature.icon;
