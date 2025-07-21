@@ -13,10 +13,14 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.1.1",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3"
+    "react-hook-form": "^7.60.0",
+    "react-router-dom": "^7.6.3",
+    "recharts": "^3.1.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -30,7 +34,9 @@
     "globals": "^16.2.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "rollup-plugin-visualizer": "^6.0.3",
     "tailwindcss": "^3.4.17",
+    "terser": "^5.43.1",
     "vite": "^7.0.0"
   }
 }
