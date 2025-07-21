@@ -1,5 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Home, Search, ArrowLeft, Zap, Sparkles, Rocket, Star } from 'lucide-react';
+import { useState, useEffect, useRef, memo } from 'react';
+import {
+  Home,
+  Search,
+  ArrowLeft,
+  Zap,
+  Sparkles,
+  Rocket,
+  Star,
+} from 'lucide-react';
 
 const PageNotFound = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -12,7 +20,7 @@ const PageNotFound = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-    
+
     // Create particles
     const newParticles = [];
     for (let i = 0; i < 50; i++) {
@@ -23,7 +31,9 @@ const PageNotFound = () => {
         size: Math.random() * 4 + 1,
         speed: Math.random() * 2 + 1,
         opacity: Math.random() * 0.5 + 0.2,
-        color: ['#8B5CF6', '#EC4899', '#06B6D4', '#10B981'][Math.floor(Math.random() * 4)]
+        color: ['#8B5CF6', '#EC4899', '#06B6D4', '#10B981'][
+          Math.floor(Math.random() * 4)
+        ],
       });
     }
     setParticles(newParticles);
@@ -31,9 +41,12 @@ const PageNotFound = () => {
     // Glitch effect for 404 text
     const glitchInterval = setInterval(() => {
       if (Math.random() < 0.1) {
-        const glitched = '404'.split('').map(() => 
-          glitchChars[Math.floor(Math.random() * glitchChars.length)]
-        ).join('');
+        const glitched = '404'
+          .split('')
+          .map(
+            () => glitchChars[Math.floor(Math.random() * glitchChars.length)]
+          )
+          .join('');
         setGlitchText(glitched);
         setTimeout(() => setGlitchText('404'), 150);
       }
@@ -48,7 +61,7 @@ const PageNotFound = () => {
         const rect = containerRef.current.getBoundingClientRect();
         setMousePos({
           x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100
+          y: ((e.clientY - rect.top) / rect.height) * 100,
         });
       }
     };
@@ -64,8 +77,8 @@ const PageNotFound = () => {
       button.classList.add('animate-pulse');
       setTimeout(() => button.classList.remove('animate-pulse'), 300);
     }
-    
-    switch(action) {
+
+    switch (action) {
       case 'home':
         window.location.href = '/';
         break;
@@ -81,15 +94,15 @@ const PageNotFound = () => {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className="min-h-screen bg-black overflow-hidden relative"
+      className="min-h-[100dvh] bg-black overflow-hidden relative"
       style={{
         background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, 
           rgba(139, 92, 246, 0.3) 0%, 
           rgba(236, 72, 153, 0.2) 25%, 
           rgba(0, 0, 0, 0.9) 50%, 
-          rgba(0, 0, 0, 1) 100%)`
+          rgba(0, 0, 0, 1) 100%)`,
       }}
     >
       {/* Animated particles */}
@@ -106,16 +119,17 @@ const PageNotFound = () => {
             borderRadius: '50%',
             opacity: particle.opacity,
             animation: `float ${particle.speed + 3}s ease-in-out infinite`,
-            animationDelay: `${particle.id * 0.1}s`
+            animationDelay: `${particle.id * 0.1}s`,
           }}
         />
       ))}
 
       {/* Main content container */}
-      <div className={`relative z-10 min-h-screen flex items-center justify-center p-8 transition-all duration-1000 ${
-        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-      }`}>
-        
+      <div
+        className={`relative z-10 min-h-[100dvh] flex items-center justify-center p-8 transition-all duration-1000 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+        }`}
+      >
         <div className="max-w-4xl w-full">
           {/* Holographic 404 */}
           <div className="text-center mb-12 relative">
@@ -130,7 +144,7 @@ const PageNotFound = () => {
                 404
               </div>
             </div>
-            
+
             {/* Floating elements around 404 */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
               <Sparkles className="absolute top-1/4 left-1/4 w-8 h-8 text-yellow-400 animate-spin" />
@@ -144,22 +158,24 @@ const PageNotFound = () => {
             <div className="relative">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
                 <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                  Houston, 
+                  Houston,
                 </span>
                 <br />
-                <span className="text-white">
-                  We have a problem
-                </span>
+                <span className="text-white">We have a problem</span>
               </h2>
               <div className="absolute -top-4 -right-4 md:-right-8">
                 <Rocket className="w-12 h-12 text-orange-500 animate-bounce" />
               </div>
             </div>
-            
+
             <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              The page you're looking for has been launched into orbit. 
-              <span className="text-purple-400 font-semibold"> Don't panic!</span> 
-              <br />Mission control is here to help.
+              The page you're looking for has been launched into orbit.
+              <span className="text-purple-400 font-semibold">
+                {' '}
+                Don't panic!
+              </span>
+              <br />
+              Mission control is here to help.
             </p>
           </div>
 
@@ -175,7 +191,7 @@ const PageNotFound = () => {
                 <span className="text-lg">Launch Home</span>
               </div>
             </button>
-            
+
             <button
               onClick={() => handleAction('back')}
               className="group relative overflow-hidden bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold py-4 px-8 rounded-full transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-slate-500/50"
@@ -186,7 +202,7 @@ const PageNotFound = () => {
                 <span className="text-lg">Go Back</span>
               </div>
             </button>
-            
+
             <button
               onClick={() => handleAction('search')}
               className="group relative overflow-hidden border-2 border-cyan-400 hover:bg-cyan-400 text-cyan-400 hover:text-black font-bold py-4 px-8 rounded-full transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50"
@@ -254,7 +270,9 @@ const PageNotFound = () => {
           <div className="text-center mt-12">
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-red-500/20 border border-red-500/50 rounded-full backdrop-blur-sm">
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-red-300 font-medium">Error 404 | Page Not Found</span>
+              <span className="text-red-300 font-medium">
+                Error 404 | Page Not Found
+              </span>
             </div>
           </div>
         </div>
@@ -280,4 +298,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default memo(PageNotFound);

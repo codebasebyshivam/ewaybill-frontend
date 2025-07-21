@@ -40,7 +40,9 @@ const Stats = ({ isLoaded }) => {
   const [hoveredStat, setHoveredStat] = useState(null);
 
   return (
-    <section className={`grid grid-cols-1 md:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+    <section
+      className={`grid grid-cols-1 md:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+    >
       {statsData.map((stat, index) => {
         const Icon = stat.icon;
         const isHovered = hoveredStat === index;
@@ -52,17 +54,25 @@ const Stats = ({ isLoaded }) => {
             onMouseEnter={() => setHoveredStat(index)}
             onMouseLeave={() => setHoveredStat(null)}
           >
-            <div className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-white/50 transition-all duration-300 ${isHovered ? 'shadow-2xl' : 'hover:shadow-xl'}`}>
+            <div
+              className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-white/50 transition-all duration-300 ${isHovered ? 'shadow-2xl' : 'hover:shadow-xl'}`}
+            >
               <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-2xl ${stat.bgColor} transition-all duration-300 ${isHovered ? 'scale-110' : ''}`}>
+                <div
+                  className={`p-3 rounded-2xl ${stat.bgColor} transition-all duration-300 ${isHovered ? 'scale-110' : ''}`}
+                >
                   <Icon className={`w-6 h-6 ${stat.color}`} />
                 </div>
                 <div className="text-right">
-                  <div className="text-xs text-green-600 font-medium">{stat.change}</div>
+                  <div className="text-xs text-green-600 font-medium">
+                    {stat.change}
+                  </div>
                   <div className="text-xs text-gray-500">vs last month</div>
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-800 mb-1">{stat.value}</div>
+              <div className="text-3xl font-bold text-gray-800 mb-1">
+                {stat.value}
+              </div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
 
