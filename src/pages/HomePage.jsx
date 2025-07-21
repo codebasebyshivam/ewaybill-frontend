@@ -6,7 +6,6 @@ const StatsSkeleton = lazy(() => import('../components/layout/home.page/skeleton
 const HeroSkeleton = lazy(() => import('../components/layout/home.page/skeletons/HeroSkeleton'));
 const ServicesSkeleton = lazy(() => import('../components/layout/home.page/skeletons/ServicesSkeleton'));
 const StickyHeaderSkeleton = lazy(() => import('../components/layout/home.page/skeletons/StickyHeaderSkeleton'));
-const HomePageSkeleton = lazy(() => import('../components/layout/home.page/skeletons/HomePageSkeleton'));
 
 
 const StickyHeader = lazy(

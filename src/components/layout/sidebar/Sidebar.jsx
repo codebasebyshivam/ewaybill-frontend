@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from 'react';
+import React, { useState, memo } from 'react';
 import {
     Home,
     BarChart3,
@@ -16,7 +16,7 @@ import {
 
 import kats_logo from '../../../assets/kats_logo.svg';
 import default_profile from '../../../assets/company_icon.png';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const menuItems = [
     { id: 'dashboard', icon: Home, label: 'Dashboard', path: '/profile' },
@@ -159,14 +159,12 @@ const Sidebar = () => {
                 <div className="p-6 border-b border-gray-200">
                     <div className="flex items-center space-x-3">
                         <div className="bg-action-button-gradient rounded-lg flex items-center justify-center">
-                            {/* <Zap size={18} className="text-white" /> */}
                             <img src={kats_logo} alt="kats_logo" className="w-10 h-10 p-2 " />
                         </div>
                         <div>
                             <h1 className="font-poppins text-xl sm:text-2xl lg:text-2xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
                                 Kats
                             </h1>
-                            {/* <p className="text-xs text-gray-500">Admin Panel</p> */}
                         </div>
                     </div>
                 </div>
@@ -177,7 +175,6 @@ const Sidebar = () => {
                         <div
                             className={`w-10 h-10  rounded-full flex items-center justify-center`}
                         >
-                            {/* <span className="text-white font-semibold text-sm"></span> */}
                             <img
                                 src="../src/"
                                 className="w-7 h-7"
@@ -190,7 +187,6 @@ const Sidebar = () => {
                                 Shree Balaji Transport ...
                             </h3>
                         </div>
-                        {/* <div className="w-2 h-2 bg-green-400 rounded-full"></div> */}
                     </div>
                 </div>
 
@@ -216,10 +212,6 @@ const Sidebar = () => {
                     <div className="mt-auto pt-4 border-t border-gray-100">
                         <div
                             className="flex items-center px-3 py-2.5 rounded-lg  cursor-pointer bg-red-600 hover:bg-red-700 text-white transition-all duration-200"
-                            onClick={() => {
-                                // handle logout logic here
-                                console.log('Logging out...');
-                            }}
                         >
                             <LogOut size={18} className="mr-3" />
                             <span className="font-medium text-sm">Logout</span>

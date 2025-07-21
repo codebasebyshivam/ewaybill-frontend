@@ -6,15 +6,15 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 const NormalizeRoutes = lazy(() => import('./NormalizedRoute')); // also lazy-load layout if heavy
-const HomePageSkeleton  =  lazy(()=>import('../components/layout/home.page/skeletons/HomePageSkeleton'));
+const HomePageSkeleton = lazy(() => import('../components/layout/home.page/skeletons/HomePageSkeleton'));
 
 const Profile = lazy(() => import('../pages/Profile'));
 const Dashboard = lazy(() => import('../features/dashboard/Dashboard'));
 const Ewaybill = lazy(() => import('../features/ewaybill/Ewaybill'));
 const RC = lazy(() => import('../features/rc/RC'));
-const DrivingLicense  = lazy(()=>import('../features/dl/DrivingLicense'));
-const Fastag = lazy(()=> import('../features/fastag/Fastag'));
-
+const DrivingLicense = lazy(() => import('../features/dl/DrivingLicense'));
+const Fastag = lazy(() => import('../features/fastag/Fastag'));
+const PageNotFoundSkeleton = lazy(() => import('../components/layout/home.page/skeletons/PageNotFoundSkeleton'));
 
 const profile_routes = [
   {
@@ -63,12 +63,16 @@ const main_routes = createBrowserRouter([
   {
     path: '*',
     element: (
-      <Suspense fallback={<HomePageSkeleton />}>
+      <Suspense fallback={
+        <div className='w-full h-screen flex items-center justify-center'>
+          <div className="spinner"></div>
+        </div>
+      }>
         <NormalizeRoutes />
       </Suspense>
     ),
     errorElement: (
-      <Suspense fallback={<div>Loading Page Not Found...</div>}>
+      <Suspense fallback={<PageNotFoundSkeleton />}>
         <PageNotFound />
       </Suspense>
     ),
@@ -97,6 +101,14 @@ const main_routes = createBrowserRouter([
           </Suspense>
         ),
         children: profile_routes
+      },
+      {
+        path: '*',
+        element: (
+          <Suspense fallback={<PageNotFoundSkeleton />}>
+            <PageNotFound />
+          </Suspense>
+        ),
       },
     ],
   },
