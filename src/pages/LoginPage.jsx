@@ -9,7 +9,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from 'lucide-react';
-
+ 
 import kats_logo from '../assets/kats_logo.svg';
 const Register = lazy(() => import('../components/layout/login.page/RegisterForm'));
 const Login = lazy(() => import('../components/layout/login.page/LoginForm'));
