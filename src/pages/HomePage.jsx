@@ -15,7 +15,7 @@ const Hero = lazy(() => import('../components/layout/home.page/Hero'));
 const Stats = lazy(() => import('../components/layout/home.page/Stats'));
 const FlowSteps = lazy(
   () => import('../components/layout/home.page/FlowSteps')
-);
+); 
 const Services = lazy(() => import('../components/layout/home.page/Services'));
 const ParticleBackground = lazy(
   () => import('../components/layout/home.page/ParticleBackground')

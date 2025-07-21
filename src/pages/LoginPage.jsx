@@ -13,6 +13,9 @@ import {
 import kats_logo from '../assets/kats_logo.svg';
 const Register = lazy(() => import('../components/layout/login.page/RegisterForm'));
 const Login = lazy(() => import('../components/layout/login.page/LoginForm'));
+const LoginFormSkeleton = lazy(() => import('../components/layout/login.page/LoginFormSkeleton'));
+const RegisterFormSkeleton = lazy(() => import('../components/layout/login.page/RegisterFormSkeleton'));
+const LoginPageSkeleton = lazy(() => import('./LoginPageSkeleton'));
  
 // Memoized Feature Card component
 const FeatureCard = memo(({ feature, isActive }) => {
@@ -211,9 +214,13 @@ const LoginPage = () => {
 
           {/* Login Form */}
           {isLogin ? (
-            <Login />
+            <Suspense fallback={<LoginFormSkeleton />}>
+              <Login />
+            </Suspense>
           ) : (
-            <Register />
+            <Suspense fallback={<RegisterFormSkeleton />}>
+              <Register />
+            </Suspense>
           )}
         </div>
 

@@ -15,6 +15,8 @@ const RC = lazy(() => import('../features/rc/RC'));
 const DrivingLicense = lazy(() => import('../features/dl/DrivingLicense'));
 const Fastag = lazy(() => import('../features/fastag/Fastag'));
 const PageNotFoundSkeleton = lazy(() => import('../components/layout/home.page/skeletons/PageNotFoundSkeleton'));
+const LoginPageSkeleton = lazy(()=>import('../pages/LoginPageSkeleton'));
+
 
 const profile_routes = [
   {
@@ -88,7 +90,7 @@ const main_routes = createBrowserRouter([
       {
         path: 'login',
         element: (
-          <Suspense fallback={<div>Loading Login...</div>}>
+          <Suspense fallback={<LoginPageSkeleton />}>
             <LoginPage />
           </Suspense>
         ),
