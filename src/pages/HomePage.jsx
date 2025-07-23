@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 import { useEffect, useState, Suspense, lazy, useRef, memo, useMemo } from 'react';
 import './../css/animate.css';
 const FlowStepsSkeleton = lazy(() => import('../components/layout/home.page/skeletons/FlowStepsSkeleton'));
@@ -52,13 +51,6 @@ const HomePage = () => {
     window.addEventListener('resize', handleResize);
     // mouse position tracker
 
-    const handleMouseMove = (e) => {
-      if (animateFrame) cancelAnimationFrame(animateFrame);
-      animateFrame = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY })
-      });
-    }
-    window.addEventListener('mousemove', handleMouseMove);
 
     // scroll tracker Scroll event for sticky header
     const handleScroll = () => setIsSticky(window.scrollY > 120);
@@ -85,7 +77,7 @@ const HomePage = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+    //   window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animateFrame);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -98,7 +90,7 @@ const HomePage = () => {
     <>
       <main
         ref={containerRef}
-        className="min-h-[100dvh] relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden"
+        className="min-h-[100dvh] relative  overflow-hidden"
       >
         {/* animated blobs */}
         {windowWidth > 768 && (
@@ -123,7 +115,6 @@ const HomePage = () => {
         )}
 
         <ParticleBackground
-          mousePosition={mousePosition}
           particles={particles}
         />
         <Suspense fallback={<StickyHeaderSkeleton />}>
@@ -132,10 +123,6 @@ const HomePage = () => {
 
         <Suspense fallback={<HeroSkeleton />}>
           <Hero isLoaded={isLoaded} />
-        </Suspense>
-
-        <Suspense fallback={<StatsSkeleton />}>
-          <Stats isLoaded={isLoaded} />
         </Suspense>
 
         <Suspense fallback={<FlowStepsSkeleton />}>
@@ -150,6 +137,11 @@ const HomePage = () => {
           />
         </Suspense>
 
+ 
+
+        <Suspense fallback={<StatsSkeleton />}>
+          <Stats isLoaded={isLoaded} />
+        </Suspense>
       </main>
     </>
   );

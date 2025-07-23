@@ -1,18 +1,13 @@
 import React, { memo } from 'react';
 
-const ParticleBackground = ({ mousePosition, particles }) => {
+const ParticleBackground = ({ particles }) => {
   return (
     <div className="absolute inset-0 z-0">
       {/* Radial mouse-follow glow */}
-      <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(20, 184, 166, 0.3) 0%, transparent 50%)`,
-        }}
-      />
+      <div className="absolute inset-0 opacity-30 pointer-events-none" />
 
       {/* Floating animated particles */}
-      {particles.map((p) => (
+      {particles.map((p) => ( 
         <div
           key={p.id}
           className="absolute rounded-full bg-gradient-to-r from-teal-400 to-emerald-500"

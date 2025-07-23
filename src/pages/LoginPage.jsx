@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useRef, lazy, Suspense, useCallback, useMemo } from 'react';
+import { memo, useState, useEffect,  lazy, Suspense, useCallback, useMemo } from 'react';
 import {
   Zap,
   CreditCard,
@@ -15,8 +15,7 @@ const Register = lazy(() => import('../components/layout/login.page/RegisterForm
 const Login = lazy(() => import('../components/layout/login.page/LoginForm'));
 const LoginFormSkeleton = lazy(() => import('../components/layout/login.page/LoginFormSkeleton'));
 const RegisterFormSkeleton = lazy(() => import('../components/layout/login.page/RegisterFormSkeleton'));
-const LoginPageSkeleton = lazy(() => import('./LoginPageSkeleton'));
- 
+
 // Memoized Feature Card component
 const FeatureCard = memo(({ feature, isActive }) => {
   const Icon = feature.icon;
@@ -79,9 +78,8 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [notification, setNotification] = useState(null);
   const [typingAnimation, setTypingAnimation] = useState('');
-  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentFeature, setCurrentFeature] = useState(0);
-  // const containerRef = useRef(null);
+
 
   // Memoized handler to prevent new function creation every render
   const handleSetLogin = useCallback(() => setIsLogin(true), []);
@@ -95,24 +93,6 @@ const LoginPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Mouse tracking for interactive effects
-  // useEffect(() => {
-  //   const handleMouseMove = (e) => {
-  //     if (containerRef.current) {
-  //       const rect = containerRef.current.getBoundingClientRect();
-  //       setMousePosition({
-  //         x: e.clientX - rect.left,
-  //         y: e.clientY - rect.top,
-  //       });
-  //     }
-  //   };
-
-  //   const container = containerRef.current;
-  //   if (container) {
-  //     container.addEventListener('mousemove', handleMouseMove);
-  //     return () => container.removeEventListener('mousemove', handleMouseMove);
-  //   }
-  // }, []);
 
   // Typing animation for welcome text
   useEffect(() => {
@@ -181,7 +161,7 @@ const LoginPage = () => {
                 </p>
               </div>
               <div className="w-12 h-12 bg-action-button-gradient rounded-xl flex items-center justify-center">
-                <img src={kats_logo} className="w-7 h-7" alt="kats_logo" loading='lazy' />
+                <img src={kats_logo} loading="lazy" className="w-7 h-7" alt="kats_logo" />
               </div>
             </div>
           </div>

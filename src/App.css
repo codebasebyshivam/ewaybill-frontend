@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 /* Skeleton shimmer effect */
 .skeleton {
   position: relative;
@@ -49,5 +53,18 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* FlowSteps .jsx */
+.svg-draw {
+  stroke-dasharray: 1200; /* Set this to the path length */
+  stroke-dashoffset: 1200;
+  animation: draw-line 2s ease forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
   }
 }
