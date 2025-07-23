@@ -10,9 +10,9 @@ const Hero = ({ isLoaded }) => {
   }, []);
   return (
     <section
-      className={`text-center mb-20 transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+      className={`h-[80vh] md:h-screen space-y-8 flex flex-col item-center justify-center text-center  transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
     >
-      <h2 className="text-5xl sm:text-5xl lg:text-7xl font-bold mb-6">
+      <h2 className="text-5xl sm:text-5xl lg:text-7xl font-bold">
         <span className="bg-action-button-gradient bg-clip-text text-transparent font-poppins">
           Smarter Way
         </span>

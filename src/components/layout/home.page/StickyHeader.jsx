@@ -13,15 +13,13 @@ const StickyHeader = ({ isSticky, isLoaded }) => {
   return (
     <>
       {/* Spacer to prevent layout shift when sticky is applied */}
-      {isSticky && <div style={{ height: '88px' }}></div>}
-
-      <header
-        className={`z-30 flex justify-between items-center px-8 py-6 backdrop-blur-sm border-b transform transition-all duration-1000
+        <header
+        className={`z-30 flex justify-between items-center  px-4 py-4 md:px-8 md:py-6 backdrop-blur-sm border-b transform transition-all duration-1000
         ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}
         ${
           isSticky
-            ? 'fixed top-0 left-0 w-full shadow-lg bg-white/90 backdrop-blur-md border-teal-100'
-            : 'relative bg-white/10 border-white/20'
+            ? 'fixed top-0 left-0 w-full shadow-lg bg-white/100 backdrop-blur-md border-teal-100'
+            : 'fixed bg-white/10 border-white/20 w-full'
         }
         `}
       >
@@ -29,11 +27,11 @@ const StickyHeader = ({ isSticky, isLoaded }) => {
         <div className="flex items-center space-x-4">
           <div className="relative">
             <div className="hidden sm:flex w-12 h-12 bg-action-button-gradient rounded-xl items-center justify-center shadow-lg">
-              <img src={kats_logo} alt="logo" className="w-7 h-7 text-white" />
+              <img src={kats_logo} alt="logo" loading="lazy" className="w-7 h-7 text-white" />
             </div>
           </div>
           <div>
-            <h1 className="font-poppins text-2xl sm:text-2xl lg:text-4xl font-bold bg-action-button-gradient bg-clip-text text-transparent">
+            <h1 className="font-poppins text-2xl  font-bold bg-action-button-gradient bg-clip-text text-transparent">
               Kats
             </h1>
             <p className="text-xs text-teal-600 font-medium font-nunito hidden sm:block">

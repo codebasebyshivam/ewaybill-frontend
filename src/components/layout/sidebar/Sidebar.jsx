@@ -159,10 +159,10 @@ const Sidebar = () => {
                 <div className="p-6 border-b border-gray-200">
                     <div className="flex items-center space-x-3">
                         <div className="bg-action-button-gradient rounded-lg flex items-center justify-center">
-                            <img src={kats_logo} alt="kats_logo" className="w-10 h-10 p-2 " />
+                            <img src={kats_logo} loading="lazy" alt="kats_logo" className="w-10 h-10 p-2 " />
                         </div>
                         <div>
-                            <h1 className="font-poppins text-xl sm:text-2xl lg:text-2xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                            <h1 className="font-poppins text-2xl   font-bold bg-action-button-gradient bg-clip-text text-transparent">
                                 Kats
                             </h1>
                         </div>
@@ -179,6 +179,7 @@ const Sidebar = () => {
                                 src="../src/"
                                 className="w-7 h-7"
                                 alt="user_profile_pic"
+                                loading='lazy'
                                 onError={(e) => (e.target.src = default_profile)}
                             />
                         </div>

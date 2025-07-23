@@ -39,9 +39,10 @@ const statsData = [
 const Stats = ({ isLoaded }) => {
   const [hoveredStat, setHoveredStat] = useState(null);
 
+
   return (
     <section
-      className={`grid grid-cols-1 md:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+      className={`bg-white  px-8 py-8 grid grid-cols-1 md:grid-cols-4 gap-10  transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
     >
       {statsData.map((stat, index) => {
         const Icon = stat.icon;
@@ -50,16 +51,18 @@ const Stats = ({ isLoaded }) => {
         return (
           <div
             key={index}
-            className={`relative group cursor-pointer transform transition-all duration-500 ${isHovered ? 'scale-110 -translate-y-2' : 'hover:scale-105'}`}
+            className={`relative group cursor-pointer transform transition-all duration-500 ${isHovered ? '-translate-y-2' : ''}`}
             onMouseEnter={() => setHoveredStat(index)}
             onMouseLeave={() => setHoveredStat(null)}
           >
+
             <div
-              className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-white/50 transition-all duration-300 ${isHovered ? 'shadow-2xl' : 'hover:shadow-xl'}`}
+              className={` bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-white/50 transition-all duration-300 ${isHovered ? 'shadow-2xl' : 'hover:shadow-xl'}`}
             >
+        
               <div className="flex items-center justify-between mb-4">
                 <div
-                  className={`p-3 rounded-2xl ${stat.bgColor} transition-all duration-300 ${isHovered ? 'scale-110' : ''}`}
+                  className={`p-3 rounded-2xl ${stat.bgColor} transition-all duration-300`}
                 >
                   <Icon className={`w-6 h-6 ${stat.color}`} />
                 </div>
@@ -76,10 +79,7 @@ const Stats = ({ isLoaded }) => {
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
 
-            {/* Hover background */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${stat.color.replace('text-', 'from-').replace('-600', '-500/20 to-') + stat.color.replace('text-', '').replace('-600', '-600/20')} rounded-3xl transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            ></div>
+
           </div>
         );
       })}
