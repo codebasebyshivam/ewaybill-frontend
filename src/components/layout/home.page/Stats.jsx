@@ -39,7 +39,6 @@ const statsData = [
 const Stats = ({ isLoaded }) => {
   const [hoveredStat, setHoveredStat] = useState(null);
 
-
   return (
     <section
       className={`bg-white  px-8 py-8 grid grid-cols-1 md:grid-cols-4 gap-10  transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
@@ -55,11 +54,9 @@ const Stats = ({ isLoaded }) => {
             onMouseEnter={() => setHoveredStat(index)}
             onMouseLeave={() => setHoveredStat(null)}
           >
-
             <div
               className={` bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-white/50 transition-all duration-300 ${isHovered ? 'shadow-2xl' : 'hover:shadow-xl'}`}
             >
-        
               <div className="flex items-center justify-between mb-4">
                 <div
                   className={`p-3 rounded-2xl ${stat.bgColor} transition-all duration-300`}
@@ -78,8 +75,6 @@ const Stats = ({ isLoaded }) => {
               </div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
-
-
           </div>
         );
       })}

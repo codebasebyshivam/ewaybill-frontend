@@ -1,6 +1,6 @@
 import React from 'react';
-const LoginFormSkeleton = React.lazy(() => import('../components/layout/login.page/LoginFormSkeleton'));
-const RegisterFormSkeleton = React.lazy(() => import('../components/layout/login.page/RegisterFormSkeleton'));
+const LoginFormSkeleton = React.lazy(() => import('./LoginFormSkeleton'));
+const RegisterFormSkeleton = React.lazy(() => import('./RegisterFormSkeleton'));
 
 const features = [1, 2, 3, 4];
 
@@ -9,7 +9,9 @@ const FeatureCardSkeleton = ({ isActive }) => (
     className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 transform ${isActive ? 'scale-105 bg-white/20 shadow-lg' : 'hover:bg-white/15'}`}
   >
     <div className="flex flex-col items-center text-center space-y-3">
-      <div className={`w-12 h-12 skeleton rounded-xl flex items-center justify-center transition-all duration-300 ${isActive ? 'scale-110' : ''}`} />
+      <div
+        className={`w-12 h-12 skeleton rounded-xl flex items-center justify-center transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+      />
       <div>
         <div className="skeleton h-5 w-24 mb-2 mx-auto" />
         <div className="skeleton h-3 w-32 mx-auto" />
@@ -21,11 +23,13 @@ const FeatureCardSkeleton = ({ isActive }) => (
 const FeatureIndicatorsSkeleton = () => (
   <div className="flex justify-center space-x-2 mb-8">
     {[0, 1, 2, 3].map((i) => (
-      <div key={i} className={`w-2 h-2 rounded-full bg-white/40 skeleton ${i === 0 ? 'w-6 bg-white' : ''}`} />
+      <div
+        key={i}
+        className={`w-2 h-2 rounded-full bg-white/40 skeleton ${i === 0 ? 'w-6 bg-white' : ''}`}
+      />
     ))}
   </div>
 );
-
 
 const LoginPageSkeleton = ({ isLogin = true }) => (
   <div className="min-h-[100dvh] bg-white">
@@ -48,7 +52,9 @@ const LoginPageSkeleton = ({ isLogin = true }) => (
           <div className="skeleton h-10 w-1/2 rounded-lg mx-1" />
         </div>
         {/* Form Skeleton */}
-        <React.Suspense fallback={<div className="skeleton h-96 w-full rounded-xl" />}>
+        <React.Suspense
+          fallback={<div className="skeleton h-96 w-full rounded-xl" />}
+        >
           {isLogin ? <LoginFormSkeleton /> : <RegisterFormSkeleton />}
         </React.Suspense>
       </div>
@@ -74,4 +80,4 @@ const LoginPageSkeleton = ({ isLogin = true }) => (
   </div>
 );
 
-export default LoginPageSkeleton; 
+export default LoginPageSkeleton;

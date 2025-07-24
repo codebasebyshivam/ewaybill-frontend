@@ -10,7 +10,9 @@ const ActionButton = ({ icon: Icon, label, variant = 'primary' }) => {
       : 'bg-white border border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700';
 
   return (
-    <button className={`group font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg ${baseStyle}`}>
+    <button
+      className={`group font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg ${baseStyle}`}
+    >
       <div className="flex items-center justify-center space-x-2">
         <Icon className="w-5 h-5" />
         <span>{label}</span>
@@ -21,13 +23,21 @@ const ActionButton = ({ icon: Icon, label, variant = 'primary' }) => {
 
 // ✅ Optimized by combining wrapper + animated element and added delay inline
 const FloatingCube = ({ delay = 0, size = 'w-16 h-16', position = '' }) => (
-  <div className={`absolute ${position} ${size} opacity-20 animate-pulse`} style={{ animationDelay: `${delay}s`, animationDuration: '3s' }}>
+  <div
+    className={`absolute ${position} ${size} opacity-20 animate-pulse`}
+    style={{ animationDelay: `${delay}s`, animationDuration: '3s' }}
+  >
     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 transform rotate-45" />
   </div>
 );
 
 // ✅ Simplified shape condition directly inside className
-const GeometricShape = ({ type = 'circle', position, color = 'bg-blue-500', size = 'w-2 h-2' }) => (
+const GeometricShape = ({
+  type = 'circle',
+  position,
+  color = 'bg-blue-500',
+  size = 'w-2 h-2',
+}) => (
   <div
     className={`absolute ${position} ${size} ${color} opacity-30 animate-pulse ${type === 'circle' ? 'rounded-full' : ''}`}
     style={{ animationDuration: '2s' }}
@@ -47,9 +57,24 @@ export default function PageNotFound() {
       <FloatingCube delay={1} size="w-8 h-8" position="top-32 right-20" />
       <FloatingCube delay={2} size="w-6 h-6" position="bottom-32 left-32" />
 
-      <GeometricShape type="circle" position="top-16 right-16" color="bg-blue-400" size="w-3 h-3" />
-      <GeometricShape type="square" position="bottom-16 right-32" color="bg-gray-400" size="w-2 h-2" />
-      <GeometricShape type="circle" position="top-1/3 left-8" color="bg-blue-300" size="w-4 h-4" />
+      <GeometricShape
+        type="circle"
+        position="top-16 right-16"
+        color="bg-blue-400"
+        size="w-3 h-3"
+      />
+      <GeometricShape
+        type="square"
+        position="bottom-16 right-32"
+        color="bg-gray-400"
+        size="w-2 h-2"
+      />
+      <GeometricShape
+        type="circle"
+        position="top-1/3 left-8"
+        color="bg-blue-300"
+        size="w-4 h-4"
+      />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         {/* ✅ Flattened wrapper structure for 404 box */}
@@ -58,7 +83,9 @@ export default function PageNotFound() {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl opacity-10"></div>
             <h1 className="text-7xl md:text-8xl font-black text-gray-900 relative">
               404
-              <div className="absolute inset-0 text-blue-500 transform translate-x-1 translate-y-1 -z-10 opacity-20">404</div>
+              <div className="absolute inset-0 text-blue-500 transform translate-x-1 translate-y-1 -z-10 opacity-20">
+                404
+              </div>
             </h1>
             <div className="absolute -top-3 -right-3 w-6 h-6 bg-blue-500 rounded transform rotate-45"></div>
             <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gray-400 rounded-full"></div>
@@ -70,10 +97,12 @@ export default function PageNotFound() {
 
         {/* ✅ Retained and structured content section */}
         <div className="space-y-6 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Page Not Found</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Page Not Found
+          </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            The page you're looking for doesn't exist or has been moved.
-            Let's get you back on track with our navigation options below.
+            The page you're looking for doesn't exist or has been moved. Let's
+            get you back on track with our navigation options below.
           </p>
         </div>
 

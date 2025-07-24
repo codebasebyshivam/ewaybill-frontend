@@ -18,16 +18,19 @@ const companies = [
   { id: 3, name: 'Company C' },
 ];
 
-
-
 const financialYears = ['2023-2024', '2024-2025', '2025-2026'];
 
-const schema = yup.object({
-  company: yup.string().required('Company is required'),
-  financialYear: yup.string().required('Financial year is required'),
-  username: yup.string().required('Username is required'),
-  password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-}).required();
+const schema = yup
+  .object({
+    company: yup.string().required('Company is required'),
+    financialYear: yup.string().required('Financial year is required'),
+    username: yup.string().required('Username is required'),
+    password: yup
+      .string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+  })
+  .required();
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -53,10 +56,17 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 animate-fadeIn" noValidate>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-5 animate-fadeIn"
+      noValidate
+    >
       {/* Company */}
       <div className="relative group">
-        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2 font-nunito">
+        <label
+          htmlFor="company"
+          className="hidden md:block text-sm font-medium text-gray-700 mb-2 font-nunito"
+        >
           Select Company
         </label>
         <div className="relative">
@@ -77,12 +87,17 @@ export default function LoginForm() {
             ))}
           </select>
         </div>
-        {errors.company && <p className="text-red-600 mt-1 text-sm">{errors.company.message}</p>}
+        {errors.company && (
+          <p className="text-red-600 mt-1 text-sm">{errors.company.message}</p>
+        )}
       </div>
 
       {/* Financial Year */}
       <div className="relative group">
-        <label htmlFor="financialYear" className="block text-sm font-medium text-gray-700 mb-2 font-nunito">
+        <label
+          htmlFor="financialYear"
+          className="hidden md:block text-sm font-medium text-gray-700 mb-2 font-nunito"
+        >
           Select Financial Year
         </label>
         <div className="relative">
@@ -104,13 +119,18 @@ export default function LoginForm() {
           </select>
         </div>
         {errors.financialYear && (
-          <p className="text-red-600 mt-1 text-sm">{errors.financialYear.message}</p>
+          <p className="text-red-600 mt-1 text-sm">
+            {errors.financialYear.message}
+          </p>
         )}
       </div>
 
       {/* Username */}
       <div className="relative group">
-        <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2 font-nunito">
+        <label
+          htmlFor="username"
+          className="hidden md:block text-sm font-medium text-gray-700 mb-2 font-nunito"
+        >
           Username
         </label>
         <div className="relative">
@@ -126,12 +146,17 @@ export default function LoginForm() {
             aria-invalid={errors.username ? 'true' : 'false'}
           />
         </div>
-        {errors.username && <p className="text-red-600 mt-1 text-sm">{errors.username.message}</p>}
+        {errors.username && (
+          <p className="text-red-600 mt-1 text-sm">{errors.username.message}</p>
+        )}
       </div>
 
       {/* Password */}
       <div className="relative group">
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2 font-nunito">
+        <label
+          htmlFor="password"
+          className="hidden md:block text-sm font-medium text-gray-700 mb-2 font-nunito"
+        >
           Password
         </label>
         <div className="relative">
@@ -152,10 +177,16 @@ export default function LoginForm() {
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-800 transition-colors"
           >
-            {showPassword ? <EyeOff className="w-7 h-7 p-1" /> : <Eye className="w-7 h-7 p-1 text-t2" />}
+            {showPassword ? (
+              <EyeOff className="w-7 h-7 p-1" />
+            ) : (
+              <Eye className="w-7 h-7 p-1 text-t2" />
+            )}
           </button>
         </div>
-        {errors.password && <p className="text-red-600 mt-1 text-sm">{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-600 mt-1 text-sm">{errors.password.message}</p>
+        )}
       </div>
 
       {/* Remember me and forgot password */}
@@ -166,9 +197,14 @@ export default function LoginForm() {
             type="checkbox"
             className="w-4 h-4 accent-t1 text-t1 hover:accent-t1 border-gray-300 rounded"
           />
-          <span className="font-nunito ml-2 text-sm text-gray-600">Remember me</span>
+          <span className="font-nunito ml-2 text-sm text-gray-600">
+            Remember me
+          </span>
         </label>
-        <a href="#" className="font-nunito text-sm text-teal-800 hover:text-t1 transition-colors">
+        <a
+          href="#"
+          className="font-nunito text-sm text-teal-800 hover:text-t1 transition-colors"
+        >
           Forgot password?
         </a>
       </div>

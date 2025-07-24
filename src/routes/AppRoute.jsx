@@ -6,7 +6,9 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 const NormalizeRoutes = lazy(() => import('./NormalizedRoute')); // also lazy-load layout if heavy
-const HomePageSkeleton = lazy(() => import('../components/layout/home.page/skeletons/HomePageSkeleton'));
+const HomePageSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/HomePageSkeleton')
+);
 
 const Profile = lazy(() => import('../pages/Profile'));
 const Dashboard = lazy(() => import('../features/dashboard/Dashboard'));
@@ -14,9 +16,12 @@ const Ewaybill = lazy(() => import('../features/ewaybill/Ewaybill'));
 const RC = lazy(() => import('../features/rc/RC'));
 const DrivingLicense = lazy(() => import('../features/dl/DrivingLicense'));
 const Fastag = lazy(() => import('../features/fastag/Fastag'));
-const PageNotFoundSkeleton = lazy(() => import('../components/layout/home.page/skeletons/PageNotFoundSkeleton'));
-const LoginPageSkeleton = lazy(()=>import('../pages/LoginPageSkeleton'));
-
+const PageNotFoundSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/PageNotFoundSkeleton')
+);
+const LoginPageSkeleton = lazy(
+  () => import('../components/layout/login.page/skeleton/LoginPageSkeleton')
+);
 
 const profile_routes = [
   {
@@ -25,7 +30,7 @@ const profile_routes = [
       <Suspense fallback={<div>Loading Dashboard...</div>}>
         <Dashboard />
       </Suspense>
-    )
+    ),
   },
   {
     path: 'ewaybill',
@@ -33,7 +38,7 @@ const profile_routes = [
       <Suspense fallback={<div>Loading Ewaybill...</div>}>
         <Ewaybill />
       </Suspense>
-    )
+    ),
   },
   {
     path: 'rc',
@@ -41,7 +46,7 @@ const profile_routes = [
       <Suspense fallback={<div>Loading RC...</div>}>
         <RC />
       </Suspense>
-    )
+    ),
   },
   {
     path: 'dl',
@@ -49,7 +54,7 @@ const profile_routes = [
       <Suspense fallback={<div>Loading dl...</div>}>
         <DrivingLicense />
       </Suspense>
-    )
+    ),
   },
   {
     path: 'fastag',
@@ -57,19 +62,21 @@ const profile_routes = [
       <Suspense fallback={<div>Loading fastag...</div>}>
         <Fastag />
       </Suspense>
-    )
-  }
-]
+    ),
+  },
+];
 // ✅ Router configuration
 const main_routes = createBrowserRouter([
   {
     path: '*',
     element: (
-      <Suspense fallback={
-        <div className='w-full h-screen flex items-center justify-center'>
-          <div className="spinner"></div>
-        </div>
-      }>
+      <Suspense
+        fallback={
+          <div className="w-full h-screen flex items-center justify-center">
+            <div className="spinner"></div>
+          </div>
+        }
+      >
         <NormalizeRoutes />
       </Suspense>
     ),
@@ -102,7 +109,7 @@ const main_routes = createBrowserRouter([
             <Profile />
           </Suspense>
         ),
-        children: profile_routes
+        children: profile_routes,
       },
       {
         path: '*',

@@ -7,7 +7,7 @@ const Hero = ({ isLoaded }) => {
 
   const handleNavigateToLogin = useCallback(() => {
     navigate('/login');
-  }, []);
+  }, [navigate]);
   return (
     <section
       className={`h-[80vh] md:h-screen space-y-8 flex flex-col item-center justify-center text-center  transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}

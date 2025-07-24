@@ -13,32 +13,38 @@ import {
   Phone,
 } from 'lucide-react';
 
-
 const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
 // Yup validation schema
-const schema = yup.object({
-  fullName: yup.string().required('Full Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  phone: yup
-    .string()
-    .matches(/^\d{10}$/, 'Phone must be 10 digits')
-    .required('Phone is required'),
-  company: yup.string(),
-  gstin: yup.string().required('GSTIN is required').matches(gstinRegex, "Invalid GSTIN format"),
-  password: yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm password is required'),
-  terms: yup.boolean().oneOf([true], 'You must accept the terms'),
-}).required();
+const schema = yup
+  .object({
+    fullName: yup.string().required('Full Name is required'),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    phone: yup
+      .string()
+      .matches(/^\d{10}$/, 'Phone must be 10 digits')
+      .required('Phone is required'),
+    company: yup.string(),
+    gstin: yup
+      .string()
+      .required('GSTIN is required')
+      .matches(gstinRegex, 'Invalid GSTIN format'),
+    password: yup
+      .string()
+      .min(6, 'Minimum 6 characters')
+      .required('Password is required'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .required('Confirm password is required'),
+    terms: yup.boolean().oneOf([true], 'You must accept the terms'),
+  })
+  .required();
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
 
   // react-hook-form setup
   const {
@@ -71,7 +77,7 @@ export default function RegisterForm() {
       noValidate
     >
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="relative group">
+        {/* <div className="relative group">
           <label
             htmlFor="fullName"
             className="font-nunito block text-sm font-medium text-gray-700 mb-2"
@@ -94,12 +100,12 @@ export default function RegisterForm() {
           {errors.fullName && (
             <p className="text-red-600 mt-1 text-sm">{errors.fullName.message}</p>
           )}
-        </div>
+        </div> */}
 
-        <div className="relative group">
+        <div className="relative group col-span-2">
           <label
             htmlFor="email"
-            className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+            className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
           >
             Email
           </label>
@@ -126,7 +132,7 @@ export default function RegisterForm() {
         <div className="relative group">
           <label
             htmlFor="phone"
-            className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+            className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
           >
             Phone
           </label>
@@ -152,7 +158,7 @@ export default function RegisterForm() {
         <div className="relative group">
           <label
             htmlFor="company"
-            className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+            className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
           >
             Company
           </label>
@@ -173,7 +179,7 @@ export default function RegisterForm() {
       <div className="relative group">
         <label
           htmlFor="gstin"
-          className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+          className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
         >
           Gstin
         </label>
@@ -196,10 +202,10 @@ export default function RegisterForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="relative group">
+        <div className="relative group col-span-2">
           <label
             htmlFor="password"
-            className="font-nunito block text-sm font-medium text-gray-700 mb-2"
+            className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
           >
             Password
           </label>
@@ -229,10 +235,12 @@ export default function RegisterForm() {
             </button>
           </div>
           {errors.password && (
-            <p className="text-red-600 mt-1 text-sm">{errors.password.message}</p>
+            <p className="text-red-600 mt-1 text-sm">
+              {errors.password.message}
+            </p>
           )}
         </div>
-
+        {/* 
         <div className="relative group">
           <label
             htmlFor="confirmPassword"
@@ -268,7 +276,7 @@ export default function RegisterForm() {
           {errors.confirmPassword && (
             <p className="text-red-600 mt-1 text-sm">{errors.confirmPassword.message}</p>
           )}
-        </div>
+        </div> */}
       </div>
 
       <div className="flex items-center">
@@ -279,7 +287,10 @@ export default function RegisterForm() {
           className="w-4 h-4 border-gray-300 rounded accent-t1 hover:accent-t2"
           aria-invalid={errors.terms ? 'true' : 'false'}
         />
-        <label htmlFor="terms" className="font-nunito ml-2 text-sm text-gray-600 select-none">
+        <label
+          htmlFor="terms"
+          className="font-nunito ml-2 text-sm text-gray-600 select-none"
+        >
           I agree to the{' '}
           <a href="#" className="text-t1 hover:text-t2">
             Terms of Service
