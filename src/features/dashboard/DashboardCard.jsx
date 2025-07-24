@@ -11,7 +11,7 @@ const DashboardCard = ({
   footerIcon,
   isProgressBar,
   progressValue,
-  children
+  children,
 }) => {
   return (
     <div className="bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 border-t-4 border-indigo-500">

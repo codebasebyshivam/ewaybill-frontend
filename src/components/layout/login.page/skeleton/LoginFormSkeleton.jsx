@@ -35,4 +35,4 @@ const LoginFormSkeleton = () => (
   </form>
 );
 
-export default LoginFormSkeleton; 
+export default LoginFormSkeleton;

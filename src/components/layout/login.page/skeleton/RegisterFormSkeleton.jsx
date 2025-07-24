@@ -50,4 +50,4 @@ const RegisterFormSkeleton = () => (
   </form>
 );
 
-export default RegisterFormSkeleton; 
+export default RegisterFormSkeleton;

@@ -11,4 +11,4 @@ const HeroSkeleton = () => (
   </section>
 );
 
-export default HeroSkeleton; 
+export default HeroSkeleton;

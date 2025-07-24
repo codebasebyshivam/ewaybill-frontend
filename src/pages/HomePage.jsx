@@ -1,11 +1,28 @@
-import { useEffect, useState, Suspense, lazy, useRef, memo, useMemo } from 'react';
+import {
+  useEffect,
+  useState,
+  Suspense,
+  lazy,
+  useRef,
+  memo,
+  useMemo,
+} from 'react';
 import './../css/animate.css';
-const FlowStepsSkeleton = lazy(() => import('../components/layout/home.page/skeletons/FlowStepsSkeleton'));
-const StatsSkeleton = lazy(() => import('../components/layout/home.page/skeletons/StatsSkeleton'));
-const HeroSkeleton = lazy(() => import('../components/layout/home.page/skeletons/HeroSkeleton'));
-const ServicesSkeleton = lazy(() => import('../components/layout/home.page/skeletons/ServicesSkeleton'));
-const StickyHeaderSkeleton = lazy(() => import('../components/layout/home.page/skeletons/StickyHeaderSkeleton'));
-
+const FlowStepsSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/FlowStepsSkeleton')
+);
+const StatsSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/StatsSkeleton')
+);
+const HeroSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/HeroSkeleton')
+);
+const ServicesSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/ServicesSkeleton')
+);
+const StickyHeaderSkeleton = lazy(
+  () => import('../components/layout/home.page/skeletons/StickyHeaderSkeleton')
+);
 
 const StickyHeader = lazy(
   () => import('../components/layout/home.page/StickyHeader')
@@ -14,7 +31,7 @@ const Hero = lazy(() => import('../components/layout/home.page/Hero'));
 const Stats = lazy(() => import('../components/layout/home.page/Stats'));
 const FlowSteps = lazy(
   () => import('../components/layout/home.page/FlowSteps')
-); 
+);
 const Services = lazy(() => import('../components/layout/home.page/Services'));
 const ParticleBackground = lazy(
   () => import('../components/layout/home.page/ParticleBackground')
@@ -25,12 +42,10 @@ const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSticky, setIsSticky] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState([]);
-  const [activeService, setActiveService] = useState(null);
 
   const initParticles = useMemo(() => {
-    return (Array.from({ length: 50 }, (_, i) => ({
+    return Array.from({ length: 50 }, (_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
@@ -38,8 +53,7 @@ const HomePage = () => {
       speedX: (Math.random() - 0.5) * 0.5,
       speedY: (Math.random() - 0.5) * 0.5,
       opacity: Math.random() * 0.5 + 0.1,
-    }))
-    )
+    }));
   }, []);
 
   useEffect(() => {
@@ -51,12 +65,10 @@ const HomePage = () => {
     window.addEventListener('resize', handleResize);
     // mouse position tracker
 
-
     // scroll tracker Scroll event for sticky header
     const handleScroll = () => setIsSticky(window.scrollY > 120);
     window.addEventListener('scroll', handleScroll);
     if (windowWidth < 768) return; // Disable on mobile
-
 
     const rafIdle = window.requestIdleCallback || window.requestAnimationFrame;
 
@@ -77,14 +89,10 @@ const HomePage = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-    //   window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animateFrame);
       window.removeEventListener('scroll', handleScroll);
     };
-
   }, []);
-
-
 
   return (
     <>
@@ -114,9 +122,7 @@ const HomePage = () => {
           </div>
         )}
 
-        <ParticleBackground
-          particles={particles}
-        />
+        <ParticleBackground particles={particles} />
         <Suspense fallback={<StickyHeaderSkeleton />}>
           <StickyHeader isSticky={isSticky} isLoaded={isLoaded} />
         </Suspense>
@@ -130,14 +136,8 @@ const HomePage = () => {
         </Suspense>
 
         <Suspense fallback={<ServicesSkeleton />}>
-          <Services
-            isLoaded={isLoaded}
-            activeService={activeService}
-            setActiveService={setActiveService}
-          />
+          <Services isLoaded={isLoaded} />
         </Suspense>
-
- 
 
         <Suspense fallback={<StatsSkeleton />}>
           <Stats isLoaded={isLoaded} />

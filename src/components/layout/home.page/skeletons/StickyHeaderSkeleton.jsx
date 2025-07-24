@@ -5,9 +5,7 @@ const StickyHeaderSkeleton = () => {
     <>
       {/* Spacer to prevent layout shift when sticky is applied */}
       <div style={{ height: '88px' }}></div>
-      <header
-        className="z-30 flex justify-between items-center px-8 py-6 border-b fixed top-0 left-0 w-full shadow-lg bg-white/90 backdrop-blur-md border-teal-100 animate-pulse"
-      >
+      <header className="z-30 flex justify-between items-center px-8 py-6 border-b fixed top-0 left-0 w-full shadow-lg bg-white/90 backdrop-blur-md border-teal-100 animate-pulse">
         {/* Logo & Branding Skeleton */}
         <div className="flex items-center space-x-4">
           <div className="relative">
@@ -27,4 +25,4 @@ const StickyHeaderSkeleton = () => {
   );
 };
 
-export default StickyHeaderSkeleton; 
+export default StickyHeaderSkeleton;

@@ -1,4 +1,12 @@
-import { memo, useState, useEffect,  lazy, Suspense, useCallback, useMemo } from 'react';
+import {
+  memo,
+  useState,
+  useEffect,
+  lazy,
+  Suspense,
+  useCallback,
+  useMemo,
+} from 'react';
 import {
   Zap,
   CreditCard,
@@ -8,26 +16,37 @@ import {
   LogIn,
   CheckCircle,
   AlertCircle,
+  ArrowLeftCircleIcon,
+  ArrowLeft,
 } from 'lucide-react';
- 
+import { useNavigate } from 'react-router-dom';
+
 import kats_logo from '../assets/kats_logo.svg';
-const Register = lazy(() => import('../components/layout/login.page/RegisterForm'));
+const Register = lazy(
+  () => import('../components/layout/login.page/RegisterForm')
+);
 const Login = lazy(() => import('../components/layout/login.page/LoginForm'));
-const LoginFormSkeleton = lazy(() => import('../components/layout/login.page/LoginFormSkeleton'));
-const RegisterFormSkeleton = lazy(() => import('../components/layout/login.page/RegisterFormSkeleton'));
+const LoginFormSkeleton = lazy(
+  () => import('../components/layout/login.page/skeleton/LoginFormSkeleton')
+);
+const RegisterFormSkeleton = lazy(
+  () => import('../components/layout/login.page/skeleton/RegisterFormSkeleton')
+);
 
 // Memoized Feature Card component
 const FeatureCard = memo(({ feature, isActive }) => {
   const Icon = feature.icon;
   return (
     <div
-      className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 transform ${isActive ? 'scale-105 bg-white/20 shadow-lg' : 'hover:bg-white/15'
-        }`}
+      className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 transform ${
+        isActive ? 'scale-105 bg-white/20 shadow-lg' : 'hover:bg-white/15'
+      }`}
     >
       <div className="flex flex-col items-center text-center space-y-3">
         <div
-          className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-white/30 scale-110' : ''
-            }`}
+          className={`w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            isActive ? 'bg-white/30 scale-110' : ''
+          }`}
         >
           <Icon className="w-6 h-6" />
         </div>
@@ -71,15 +90,13 @@ const features = [
   },
 ];
 
-
-
-
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [notification, setNotification] = useState(null);
   const [typingAnimation, setTypingAnimation] = useState('');
   const [currentFeature, setCurrentFeature] = useState(0);
 
+  const navigate = useNavigate();
 
   // Memoized handler to prevent new function creation every render
   const handleSetLogin = useCallback(() => setIsLogin(true), []);
@@ -92,7 +109,6 @@ const LoginPage = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-
 
   // Typing animation for welcome text
   useEffect(() => {
@@ -110,29 +126,32 @@ const LoginPage = () => {
     return () => clearInterval(interval);
   }, [isLogin]);
 
-  
-
   // Memoize the feature indicators so they don't re-render unnecessarily
   const featureIndicators = useMemo(() => {
     return features.map((_, index) => (
       <div
         key={index}
-        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentFeature ? 'bg-white w-6' : 'bg-white/40'
-          }`}
+        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+          index === currentFeature ? 'bg-white w-6' : 'bg-white/40'
+        }`}
       />
     ));
   }, [currentFeature]);
 
+  const handleBackButton = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
 
   return (
     <div className="min-h-[100dvh] bg-white">
       {/* Notification */}
       {notification && (
         <div
-          className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg flex items-center space-x-3 ${notification.type === 'success'
-            ? 'bg-green-500 text-white'
-            : 'bg-red-500 text-white'
-            } transform transition-all duration-300`}
+          className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg flex items-center space-x-3 ${
+            notification.type === 'success'
+              ? 'bg-green-500 text-white'
+              : 'bg-red-500 text-white'
+          } transform transition-all duration-300`}
         >
           {notification.type === 'success' ? (
             <CheckCircle className="w-5 h-5" />
@@ -145,9 +164,16 @@ const LoginPage = () => {
 
       <div className="grid lg:grid-cols-2 h-[100dvh]">
         {/* Left Side - Login/Register Form */}
-        <div className=" mx-auto w-full sm:w-3/4 lg:w-full  xl:w-3/4 p-4 lg:p-6 transform  transition-transform duration-300  flex item-center justify-center flex-col">
+        <div className=" mx-auto w-full sm:w-3/4 lg:w-full  xl:w-3/4 p-4 lg:p-6 transform  transition-transform duration-300  flex item-center justify-start  flex-col">
+          <button
+            className="md:hidden bg-action-button-gradient text-white font-nunito rounded-full p-3 self-start mb-8"
+            onClick={handleBackButton}
+          >
+            <ArrowLeft />
+          </button>
+
           {/* Logo */}
-          <div className="mb-4">
+          <div className="mb-8 md:mb-4">
             <div className="flex items-center justify-between space-x-3">
               <div>
                 <h1 className="text-2xl font-poppins font-bold text-gray-800 mb-2">
@@ -161,20 +187,26 @@ const LoginPage = () => {
                 </p>
               </div>
               <div className="w-12 h-12 bg-action-button-gradient rounded-xl flex items-center justify-center">
-                <img src={kats_logo} loading="lazy" className="w-7 h-7" alt="kats_logo" />
+                <img
+                  src={kats_logo}
+                  loading="lazy"
+                  className="w-7 h-7"
+                  alt="kats_logo"
+                />
               </div>
             </div>
           </div>
 
           {/* Form Toggle */}
-          <div className="flex bg-gray-100 rounded-xl p-1 mb-5">
+          <div className="flex bg-gray-100 rounded-xl p-1 mb-8  md:mb-5">
             <button
               aria-label="Login Tab"
               onClick={handleSetLogin}
-              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${isLogin
-                ? 'bg-action-button-gradient text-white shadow-sm'
-                : 'text-gray-800 hover:text-gray-900'
-                }`}
+              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                isLogin
+                  ? 'bg-action-button-gradient text-white shadow-sm'
+                  : 'text-gray-800 hover:text-gray-900'
+              }`}
             >
               <LogIn className="w-4 h-4" />
               <span>Login</span>
@@ -182,10 +214,11 @@ const LoginPage = () => {
             <button
               aria-label="Register Tab"
               onClick={handleSetRegister}
-              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${!isLogin
-                ? 'bg-action-button-gradient text-white shadow-sm'
-                : 'text-gray-800 hover:text-gray-900'
-                }`}
+              className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                !isLogin
+                  ? 'bg-action-button-gradient text-white shadow-sm'
+                  : 'text-gray-800 hover:text-gray-900'
+              }`}
             >
               <UserPlus className="w-4 h-4" />
               <span>Register</span>
@@ -222,7 +255,6 @@ const LoginPage = () => {
 
             {/* Animated Feature Cards */}
             <div className="grid grid-cols-2 gap-4 mb-8">
-
               {features.map((feature, index) => (
                 <FeatureCard
                   key={index}
@@ -230,7 +262,6 @@ const LoginPage = () => {
                   isActive={index === currentFeature}
                 />
               ))}
-
             </div>
 
             {/* Feature Indicators */}
@@ -240,7 +271,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

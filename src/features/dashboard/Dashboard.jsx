@@ -1,5 +1,13 @@
-import React from "react";
-import { Users, DollarSign, Award, TrendingUp, ArrowUpRight, Activity, BarChart3 } from "lucide-react";
+import React from 'react';
+import {
+  Users,
+  DollarSign,
+  Award,
+  TrendingUp,
+  ArrowUpRight,
+  Activity,
+  BarChart3,
+} from 'lucide-react';
 
 const Dashboard = () => {
   return (
@@ -7,8 +15,12 @@ const Dashboard = () => {
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">Dashboard Overview</h1>
-          <p className="text-slate-500 mt-1">Welcome back! Here's your business at a glance</p>
+          <h1 className="text-2xl font-bold text-slate-800">
+            Dashboard Overview
+          </h1>
+          <p className="text-slate-500 mt-1">
+            Welcome back! Here's your business at a glance
+          </p>
         </div>
         <div className="mt-4 sm:mt-0">
           <div className="inline-flex items-center bg-blue-50 px-3 py-1 rounded-full">
@@ -131,33 +143,55 @@ const Dashboard = () => {
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-medium text-slate-700">Growth Overview</h3>
             <div className="flex space-x-2">
-              <button className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md">Monthly</button>
-              <button className="px-3 py-1 text-xs bg-slate-100 text-slate-600 rounded-md">Yearly</button>
+              <button className="px-3 py-1 text-xs bg-blue-500 text-white rounded-md">
+                Monthly
+              </button>
+              <button className="px-3 py-1 text-xs bg-slate-100 text-slate-600 rounded-md">
+                Yearly
+              </button>
             </div>
           </div>
           <div className="h-64 flex items-end justify-between px-2">
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '40%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '40%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">Jan</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '60%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '60%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">Feb</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '45%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '45%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">Mar</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '80%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '80%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">Apr</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '65%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '65%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">May</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 rounded-t-lg bg-blue-500" style={{ height: '90%' }}></div>
+              <div
+                className="w-12 rounded-t-lg bg-blue-500"
+                style={{ height: '90%' }}
+              ></div>
               <span className="text-xs text-slate-500 mt-1">Jun</span>
             </div>
           </div>
@@ -173,7 +207,10 @@ const Dashboard = () => {
                 <span className="text-slate-800 font-medium">8.8k</span>
               </div>
               <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-blue-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                <div
+                  className="bg-blue-500 h-2 rounded-full"
+                  style={{ width: '75%' }}
+                ></div>
               </div>
             </div>
             <div>
@@ -182,7 +219,10 @@ const Dashboard = () => {
                 <span className="text-slate-800 font-medium">2.4%</span>
               </div>
               <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '45%' }}></div>
+                <div
+                  className="bg-emerald-500 h-2 rounded-full"
+                  style={{ width: '45%' }}
+                ></div>
               </div>
             </div>
             <div>
@@ -191,7 +231,10 @@ const Dashboard = () => {
                 <span className="text-slate-800 font-medium">12min</span>
               </div>
               <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-amber-500 h-2 rounded-full" style={{ width: '65%' }}></div>
+                <div
+                  className="bg-amber-500 h-2 rounded-full"
+                  style={{ width: '65%' }}
+                ></div>
               </div>
             </div>
           </div>

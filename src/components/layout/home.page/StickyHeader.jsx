@@ -8,17 +8,17 @@ const StickyHeader = ({ isSticky, isLoaded }) => {
 
   const handleNavigateToLogin = useCallback(() => {
     navigate('/login');
-  }, []);
+  }, [navigate]);
 
   return (
     <>
       {/* Spacer to prevent layout shift when sticky is applied */}
-        <header
+      <header
         className={`z-30 flex justify-between items-center  px-4 py-4 md:px-8 md:py-6 backdrop-blur-sm border-b transform transition-all duration-1000
         ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}
         ${
           isSticky
-            ? 'fixed top-0 left-0 w-full shadow-lg bg-white/100 backdrop-blur-md border-teal-100'
+            ? 'fixed top-0 left-0 w-full shadow-lg bg-white/70 backdrop-blur-md border-teal-100'
             : 'fixed bg-white/10 border-white/20 w-full'
         }
         `}
@@ -27,7 +27,12 @@ const StickyHeader = ({ isSticky, isLoaded }) => {
         <div className="flex items-center space-x-4">
           <div className="relative">
             <div className="hidden sm:flex w-12 h-12 bg-action-button-gradient rounded-xl items-center justify-center shadow-lg">
-              <img src={kats_logo} alt="logo" loading="lazy" className="w-7 h-7 text-white" />
+              <img
+                src={kats_logo}
+                alt="logo"
+                loading="lazy"
+                className="w-7 h-7 text-white"
+              />
             </div>
           </div>
           <div>
