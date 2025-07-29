@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import ScrollReveal from '../../common/ScrollReveal';
+import { memo, lazy, Suspense } from 'react';
+const ScrollReveal = lazy(() => import('../../common/ScrollReveal'));
 import challan_image from '/assets/challan-api.webp';
 import ewaybill_api from '/assets/ewaybill-api.webp';
 import fastag_api from '/assets/fastag-api.webp';
@@ -39,7 +39,7 @@ const services = [
   {
     id: 'dl',
     name: 'Driving License',
-    url:dl_api,
+    url: dl_api,
     description:
       'Driving License (DL) Verification Verify driving license details instantly with our DL API. Ideal for insurers, mobility providers, and background verifiers seeking fast, secure, and real-time DL validation across India.',
   },
@@ -49,12 +49,11 @@ const Services = ({ isLoaded }) => {
   const getDelay = (index) => 0.1 + index * 0.1;
 
   return (
-    <div className='relative bg-white bg-fixed bg-left bg-no-repeat bg-contain md:bg-[url("/assets/PathFillGreenBg.svg")] p-8 '>
+    <div className='relative bg-white bg-fixed bg-left bg-no-repeat bg-contain md:bg-[url("/assets/PathFillGreenBg.svg")] p-4 md:p-8 '>
 
       <section
-        className={`transition-all duration-1000 ${
-          isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        } p-4`}
+        className={`transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
       >
         <div className="text-center mb-12">
           <h3 className="text-3xl md:text-4xl font-bold font-poppins text-h1 mb-4">
@@ -70,31 +69,34 @@ const Services = ({ isLoaded }) => {
           {services.map((service, i) => {
             const isImageLeft = i % 2 === 0;
             return (
-              <ScrollReveal delay={getDelay(i)} key={service.id}>
-                <div className="group relative p-4 cursor-pointer service-card">
-                  <div
-                    className={`flex items-start md:space-x-6 flex-col ${
-                      isImageLeft ? 'md:flex-row-reverse' : 'md:flex-row'
-                    }`}
-                  >
-                  
-                    <img
-                      src={service.url}
-                      loading="lazy"
-                      alt={`${service.name} API`}
-                      className="w-[400px] h-[400px] rounded-2xl"
-                    />
-                    <div className="flex-1">
-                      <h4 className="text-2xl font-extrabold text-h1 mb-2 font-nunito">
-                        {service.name}
-                      </h4>
-                      <p className="text-black mb-4 font-nunito">
-                        {service.description}
-                      </p>
+              <Suspense fallback={<div className="h-40" />} key={service.id}>
+                <ScrollReveal delay={getDelay(i)} key={service.id}>
+                  <div className="group relative p-4 cursor-pointer service-card">
+                    <div
+                      className={`flex items-start md:space-x-6 flex-col ${isImageLeft ? 'md:flex-row-reverse' : 'md:flex-row'
+                        }`}
+                    >
+
+                      <img
+                        src={service.url}
+                        loading="lazy"
+                        alt={`${service.name} API`}
+                        decoding="async"
+                        fetchPriority="low"
+                        className="w-[400px] max-h-[51vh] rounded-2xl object-cover select-none pointer-events-none"
+                      />
+                      <div className="flex-1">
+                        <h4 className="text-2xl font-extrabold text-h1 mb-2 font-nunito">
+                          {service.name}
+                        </h4>
+                        <p className="text-black mb-4 font-nunito">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              </Suspense>
             );
           })}
         </div>

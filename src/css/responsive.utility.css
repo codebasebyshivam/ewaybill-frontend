@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@layer components {
+
+    /* tab components */
+    .tab-container {
+        @apply w-full bg-white 
+    }
+
+
+    .tab-header {
+        @apply flex flex-wrap border-b border-gray-200 p-1 sticky top-[64px]  left-0 md:static z-[1000] bg-white
+    }
+
+    .tab-btn {
+        @apply px-4 py-2 mr-3 mb-2 rounded-t-lg transition-all duration-300 text-sm md:text-sm font-medium
+    }
+
+    .tab-btn-icon {
+        @apply flex items-center justify-center mr-1 text-xs
+    }
+
+    .tab-btn-heading {
+        @apply flex items-center justify-center
+    }
+
+    .tab-content {
+        @apply  rounded-lg
+    }
+
+    .tab-pane {
+        @apply w-full overflow-auto
+    }
+
+
+    /* delete modal */
+    .modal-overlay {
+        @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[3000]
+    }
+
+    .modal-container {
+        @apply bg-white rounded-lg shadow-lg w-full max-w-md mx-auto overflow-hidden
+    }
+
+    .modal-header {
+        @apply flex items-center justify-between p-4 border-b border-gray-200 font-nunito
+    }
+
+    .modal-body {
+        @apply p-6 
+    }
+
+    .modal-footer {
+        @apply flex flex-col sm:flex-row-reverse gap-2 p-4 border-t border-gray-200
+    }
+
+    .delete-cancel-btn {
+        @apply w-full sm:w-auto px-4 py-2 bg-white text-gray-700 font-medium font-nunito rounded-md border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors
+    }
+
+    .delete-confirm-btn {
+        @apply w-full sm:w-auto px-4 py-2 bg-action-button-gradient text-white font-nunito font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors
+    }
+
+    /* custom modal */
+    .custom-modal-overlay {
+        @apply fixed inset-0 z-[7000] bg-black bg-opacity-50 flex justify-center p-4 transition-opacity duration-300
+    }
+
+    .custom-modal-header {
+        @apply flex items-center justify-between p-4  rounded-xl
+    }
+    .custom-modal-container{
+         @apply rounded-2xl
+    }
+
+    .custom-modal-body{
+       @apply  overflow-y-auto max-h-[80vh]  
+    }
+
+    .custom-modal-footer {
+        @apply p-4 
+    }
+    .heading-1{
+        @apply text-gray-800 text-md lg:text-lg font-semibold
+    }
+
+
+
+    .custom-modal-close-btn{
+        @apply text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-full p-1 transition-colors
+    }
+
+    .details-values-style {
+        @apply text-gray-900 text-md md:text-md lg:text-sm font-medium
+    }
+
+    .details-heading {
+        @apply text-gray-500 text-md md:text-md lg:text-sm font-medium mb-1
+    }
+
+    .details-card {
+        @apply col-span-12 bg-gray-50 p-3 rounded-lg
+    }
+
+    .responsive-padding {
+        @apply p-4 sm:p-6 md:p-8 lg:p-10;
+    }
+    .center-text{
+        @apply text-center
+    }
+
+    .center-text{
+        @apply text-center
+    }
+
+    .flex-center {
+        @apply flex items-center justify-center
+    }
+
+    .card-style {
+        @apply bg-white rounded-xl shadow-md border border-gray-50 hover:shadow-lg transition-shadow duration-300
+    }
+
+    .flex-between {
+        @apply flex items-center justify-between
+    }
+
+    .three-dot-menu {
+        @apply p-2 rounded-full hover:bg-gray-100 transition-colors duration-200
+    }
+
+    .btn-primary {
+        @apply w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
+    }
+
+
+}
+
+
+
+
+
+
+
+/* skeleton animation */
+@keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: #93a4bb;
+  }
+  .skeleton-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; height: 100%; width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+  }
