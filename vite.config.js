@@ -10,7 +10,7 @@ export default defineConfig({
   minify: 'terser',
   terserOptions: {
     compress: true,
-    mangle: true,
+    mangle: true, 
   },
 },
   server: {
