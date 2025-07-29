@@ -23,5 +23,5 @@ export default function BulkUpload({ heading, link }) {
         <FileUpload onUpload={handleUpload} link={link} />
       </div>
     </div>
-  );
+  ); 
 }
