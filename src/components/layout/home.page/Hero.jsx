@@ -10,7 +10,7 @@ const Hero = ({ isLoaded }) => {
   }, [navigate]);
   return (
     <section
-      className={`h-[80vh] md:h-screen space-y-8 flex flex-col item-center justify-center text-center  transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+      className={`h-[60vh] md:h-[80vh] space-y-4 flex flex-col item-center justify-center text-center  transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
     >
       <h2 className="text-5xl sm:text-5xl lg:text-7xl font-bold">
         <span className="bg-action-button-gradient bg-clip-text text-transparent font-poppins">

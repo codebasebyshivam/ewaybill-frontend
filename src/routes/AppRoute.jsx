@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import ProtectedRoute from './ProtectedRoute';
 // ✅ Lazy-load all routes
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -13,7 +13,7 @@ const HomePageSkeleton = lazy(
 const Profile = lazy(() => import('../pages/Profile'));
 const Dashboard = lazy(() => import('../features/dashboard/Dashboard'));
 const Ewaybill = lazy(() => import('../features/ewaybill/Ewaybill'));
-const RC = lazy(() => import('../features/rc/RC'));
+const RC = lazy(() => import('../pages/RC'));
 const DrivingLicense = lazy(() => import('../features/dl/DrivingLicense'));
 const Fastag = lazy(() => import('../features/fastag/Fastag'));
 const PageNotFoundSkeleton = lazy(
@@ -22,6 +22,9 @@ const PageNotFoundSkeleton = lazy(
 const LoginPageSkeleton = lazy(
   () => import('../components/layout/login.page/skeleton/LoginPageSkeleton')
 );
+const AllRc =  lazy(() => import('../features/rc/AllRc'));
+const BulkUpload =  lazy(() => import('../features/rc/BulkUpload'));
+
 
 const profile_routes = [
   {
@@ -47,6 +50,32 @@ const profile_routes = [
         <RC />
       </Suspense>
     ),
+    children: [
+      // {
+      //   path: 'rc-search',
+      //   element: (
+      //     <Suspense fallback={<div>Loading rc search...</div>}>
+      //       <RcSearch /> {/* You need to import this component */}
+      //     </Suspense>
+      //   ),
+      // },
+      {
+        path: 'bulk-upload',
+        element: (
+          <Suspense fallback={<div>Loading bulk upload...</div>}>
+            <BulkUpload  heading={'RC Managment System'} sub_heading={'Upload Bulk Vehicles'} link={'/rcsample.xlsx'} />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'all-rc',
+        element: (
+          <Suspense fallback={<div>Loading all rc...</div>}>
+            <AllRc />
+          </Suspense>
+        ),
+      },
+    ],
   },
   {
     path: 'dl',
@@ -105,9 +134,11 @@ const main_routes = createBrowserRouter([
       {
         path: 'profile',
         element: (
-          <Suspense fallback={<div>Loading Profile...</div>}>
-            <Profile />
-          </Suspense>
+          <ProtectedRoute redirect_route="/login">
+            <Suspense fallback={<div>Loading Profile...</div>}>
+              <Profile />
+            </Suspense>
+          </ProtectedRoute>
         ),
         children: profile_routes,
       },

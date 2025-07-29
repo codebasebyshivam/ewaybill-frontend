@@ -5,14 +5,14 @@ import { visualizer } from 'rollup-plugin-visualizer';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), visualizer({ open: true })],
-  build: {
-    sourcemap: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: true,
-      mangle: true,
-    },
+ build: {
+  sourcemap: false,
+  minify: 'terser',
+  terserOptions: {
+    compress: true,
+    mangle: true, 
   },
+},
   server: {
     port: 5178,
     host: '0.0.0.0',
