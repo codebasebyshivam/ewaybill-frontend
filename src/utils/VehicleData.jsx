@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 
 
 const FlipCard = () => {
     const [flipped, setFlipped] = useState(false);
 
     return (
-        <div className="w-[300px] h-[400px] perspective ">
-            <div className={`relative w-full h-full transition-transform duration-700 transform-style preserve-3d ${flipped ? 'rotate-y-180' : ''}`}>
+        <div className="w-[300px] h-[400px] perspective">
+            <div className={` relative w-full h-full transition-transform duration-700 transform-style  ${flipped ? 'rotate-y-180' : ''}`}>
                 {/* Front */}
-                <div className="absolute w-full h-full backface-hidden bg-t1 text-black rounded-xl shadow-lg p-6">
+                <div className="bg-red-500 absolute w-full h-full backface-hidden  text-black rounded-xl shadow-lg p-6">
                     <h2 className="text-center  text-white font-nunito text-xl font-semibold mb-4">DL1LQ5147</h2>
 
                     <div className="text-center text-white font-nunito mb-4 text-sm">
@@ -66,7 +66,7 @@ const FlipCard = () => {
                 </div>
 
                 {/* Back */}
-                <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-t1 text-white rounded-xl shadow-lg p-6">
+                <div className="bg-green-500 absolute w-full h-full backface-hidden rotate-y-180  text-white rounded-xl shadow-lg p-6">
                     <h2 className="text-center text-xl font-semibold mb-4 font-poppins ">Vehicle Details</h2>
                     <ul className="text-sm space-y-3">
                         <li><span className="text-gray-400">Engine:</span> G12BN1200139</li>
@@ -77,7 +77,7 @@ const FlipCard = () => {
                         <li><span className="text-gray-400">Cylinders:</span> 2</li>
                         <li><span className="text-gray-400">Seating Capacity:</span> 2</li>
                         <li className='truncate  max-w-[300px]'><span className="text-gray-400">Son/Wife/Daughter of:</span> Open Body</li>
-                 
+
                     </ul>
 
                     <button
@@ -92,4 +92,4 @@ const FlipCard = () => {
     );
 };
 
-export default FlipCard;
+export default memo(FlipCard);

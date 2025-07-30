@@ -1,8 +1,11 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom';
+import { memo } from 'react';
 
-export default function RC() {
+
+
+const  RC = ()=>{
     return (
         <Outlet />
     )
 }
+export default memo(RC);

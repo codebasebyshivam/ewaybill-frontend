@@ -11,7 +11,6 @@ const useAuthStore = create((set) => ({
         set({ isLoading: true });
         try {
             const response = await api.get('/api/me');
-            console.log('Fetched user:', response.data);
             set({ user: response.data, isLoading: false, hasFetched: true });
         } catch (error) {
             set({ user: null, isLoading: false, hasFetched: true });

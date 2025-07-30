@@ -82,7 +82,6 @@ export default function LoginForm({ setIsLogin }) {
           id: register('company').value
         });
         const companies = response.data?.cmp_list || [];
-        console.log('Companies:', companies);
         setCompanies(companies);
       } catch (error) {
         console.error('Failed to fetch companies:', error);
