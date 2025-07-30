@@ -25,7 +25,6 @@ const RegisterFormSkeleton = lazy(
 );
 import useAuthStore from '../store/useAuthStore';
 import useSession from '../hooks/useSession';
-import { toast } from 'react-toastify';
 
 
 const LoginPage = () => {
@@ -33,7 +32,7 @@ const LoginPage = () => {
   const [typingAnimation, setTypingAnimation] = useState('');
   const { user } = useAuthStore();
   const navigate = useNavigate();
-  const { checkSession, lastCheckedRef, IDLE_LIMIT } = useSession();
+  const { checkSession } = useSession();
   const [isCheckingSession, setIsCheckingSession] = useState(true);
 
 
@@ -187,9 +186,6 @@ const LoginPage = () => {
                 <FeaturesList />
               </>
             )}
-
-
-
           </div>
         </div>
       </div>

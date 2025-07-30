@@ -1,9 +1,7 @@
-import React from "react";
 
 export default function CustomModal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
-  // console.log(onClose);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[2000]">

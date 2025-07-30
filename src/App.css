@@ -19,12 +19,10 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
   animation: shimmer 1.5s infinite;
 }
 
@@ -61,7 +59,8 @@ html {
 
 /* FlowSteps .jsx */
 .svg-draw {
-  stroke-dasharray: 1200; /* Set this to the path length */
+  stroke-dasharray: 1200;
+  /* Set this to the path length */
   stroke-dashoffset: 1200;
   animation: draw-line 2s ease forwards;
 }
@@ -95,6 +94,8 @@ html {
 /* user cannot select content of website */
 body {
   user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none;     /* IE 10+ */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10+ */
 }

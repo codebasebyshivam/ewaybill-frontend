@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios.instance";
 import useAuthStore from "../store/useAuthStore";
@@ -24,7 +23,7 @@ const useLogout = () => {
 
     return logout;
 
-}
+};
 
 
 export default useLogout;

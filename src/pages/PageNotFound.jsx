@@ -1,10 +1,10 @@
 // Optimized NotFoundPage.js with comments for changes
-import React from 'react';
+import { memo } from 'react';
 import { ArrowLeft, Home, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // ✅ Replaced individual buttons with reusable ActionButton component
-const ActionButton = ({ icon: Icon, label, variant = 'primary',handleClick }) => {
+const ActionButtonComponent = ({ icon: Icon, label, variant = 'primary',handleClick }) => {
   const baseStyle =
     variant === 'primary'
       ? 'bg-t1 hover:bg-t2 text-white'
@@ -22,8 +22,10 @@ const ActionButton = ({ icon: Icon, label, variant = 'primary',handleClick }) =>
   );
 };
 
+const ActionButton = memo(ActionButtonComponent);
+
 // ✅ Optimized by combining wrapper + animated element and added delay inline
-const FloatingCube = ({ delay = 0, size = 'w-16 h-16', position = '' }) => (
+const FloatingCubeComponent = ({ delay = 0, size = 'w-16 h-16', position = '' }) => (
   <div
     className={`absolute ${position} ${size} opacity-20 animate-pulse`}
     style={{ animationDelay: `${delay}s`, animationDuration: '3s' }}
@@ -32,8 +34,10 @@ const FloatingCube = ({ delay = 0, size = 'w-16 h-16', position = '' }) => (
   </div>
 );
 
+const FloatingCube = memo(FloatingCubeComponent);
+
 // ✅ Simplified shape condition directly inside className
-const GeometricShape = ({
+const GeometricShapeComponent = ({
   type = 'circle',
   position,
   color = 'bg-t1',
@@ -45,7 +49,10 @@ const GeometricShape = ({
   />
 );
 
-export default function PageNotFound() {
+const GeometricShape = memo(GeometricShapeComponent);
+
+
+const PageNotFound = ()=> {
   const navigate = useNavigate();
 
   const handleBackClick = ()=>{
@@ -139,3 +146,6 @@ export default function PageNotFound() {
     </div>
   );
 }
+
+
+export default memo(PageNotFound);

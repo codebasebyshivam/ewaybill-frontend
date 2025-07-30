@@ -1,7 +1,10 @@
-import React from 'react'
+import { memo } from "react";
 
-export default function AllRc() {
+
+const AllRc = () => {
   return (
     <div className='bg-background-grey'>AllRc</div>
   )
 }
+
+export default memo(AllRc);

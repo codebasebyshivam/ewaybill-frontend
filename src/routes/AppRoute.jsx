@@ -51,14 +51,6 @@ const profile_routes = [
       </Suspense>
     ),
     children: [
-      // {
-      //   path: 'rc-search',
-      //   element: (
-      //     <Suspense fallback={<div>Loading rc search...</div>}>
-      //       <RcSearch /> {/* You need to import this component */}
-      //     </Suspense>
-      //   ),
-      // },
       {
         path: 'bulk-upload',
         element: (
@@ -109,11 +101,11 @@ const main_routes = createBrowserRouter([
         <NormalizeRoutes />
       </Suspense>
     ),
-    errorElement: (
-      <Suspense fallback={<PageNotFoundSkeleton />}>
-        <PageNotFound />
-      </Suspense>
-    ),
+    // errorElement: (
+    //   <Suspense fallback={<PageNotFoundSkeleton />}>
+        
+    //   </Suspense>
+    // ),
     children: [
       {
         index: true,
