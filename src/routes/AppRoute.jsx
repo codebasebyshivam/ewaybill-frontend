@@ -22,9 +22,8 @@ const PageNotFoundSkeleton = lazy(
 const LoginPageSkeleton = lazy(
   () => import('../components/layout/login.page/skeleton/LoginPageSkeleton')
 );
-const AllRc =  lazy(() => import('../features/rc/AllRc'));
-const BulkUpload =  lazy(() => import('../features/rc/BulkUpload'));
-
+const AllRc = lazy(() => import('../features/rc/AllRc'));
+const BulkUpload = lazy(() => import('../features/rc/BulkUpload'));
 
 const profile_routes = [
   {
@@ -55,7 +54,11 @@ const profile_routes = [
         path: 'bulk-upload',
         element: (
           <Suspense fallback={<div>Loading bulk upload...</div>}>
-            <BulkUpload  heading={'RC Managment System'} sub_heading={'Upload Bulk Vehicles'} link={'/rcsample.xlsx'} />
+            <BulkUpload
+              heading={'RC Managment System'}
+              sub_heading={'Upload Bulk Vehicles'}
+              link={'/rcsample.xlsx'}
+            />
           </Suspense>
         ),
       },
@@ -103,7 +106,7 @@ const main_routes = createBrowserRouter([
     ),
     // errorElement: (
     //   <Suspense fallback={<PageNotFoundSkeleton />}>
-        
+
     //   </Suspense>
     // ),
     children: [

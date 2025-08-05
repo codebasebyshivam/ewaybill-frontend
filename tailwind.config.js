@@ -3,8 +3,8 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-       transformOrigin: {
-        'center': 'center',
+      transformOrigin: {
+        center: 'center',
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],
@@ -26,7 +26,7 @@ export default {
         t2: '#157B71',
         t3: '#ECFDF5',
         tertiary: '#000000',
-        'background-grey':'#F8FAFC'
+        'background-grey': '#F8FAFC',
       },
       backgroundImage: {
         'teal-gradient': `linear-gradient(
@@ -38,7 +38,8 @@ export default {
           #1C6F67 100%
         )`,
         'action-button-gradient': `linear-gradient(to right, #0d9488, #059669)`, // teal-600 to emerald-600,
-        'soft-action-gradient': 'linear-gradient(to bottom right, #ccfbf1, #99f6e4, #a7f3d0)',
+        'soft-action-gradient':
+          'linear-gradient(to bottom right, #ccfbf1, #99f6e4, #a7f3d0)',
       },
     },
   },

@@ -4,7 +4,12 @@ import { ArrowLeft, Home, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // ✅ Replaced individual buttons with reusable ActionButton component
-const ActionButtonComponent = ({ icon: Icon, label, variant = 'primary',handleClick }) => {
+const ActionButtonComponent = ({
+  icon: Icon,
+  label,
+  variant = 'primary',
+  handleClick,
+}) => {
   const baseStyle =
     variant === 'primary'
       ? 'bg-t1 hover:bg-t2 text-white'
@@ -12,7 +17,8 @@ const ActionButtonComponent = ({ icon: Icon, label, variant = 'primary',handleCl
 
   return (
     <button
-      onClick={handleClick} className={`group font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg ${baseStyle}`}
+      onClick={handleClick}
+      className={`group font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg ${baseStyle}`}
     >
       <div className="flex items-center justify-center space-x-2">
         <Icon className="w-5 h-5" />
@@ -25,7 +31,11 @@ const ActionButtonComponent = ({ icon: Icon, label, variant = 'primary',handleCl
 const ActionButton = memo(ActionButtonComponent);
 
 // ✅ Optimized by combining wrapper + animated element and added delay inline
-const FloatingCubeComponent = ({ delay = 0, size = 'w-16 h-16', position = '' }) => (
+const FloatingCubeComponent = ({
+  delay = 0,
+  size = 'w-16 h-16',
+  position = '',
+}) => (
   <div
     className={`absolute ${position} ${size} opacity-20 animate-pulse`}
     style={{ animationDelay: `${delay}s`, animationDuration: '3s' }}
@@ -51,13 +61,12 @@ const GeometricShapeComponent = ({
 
 const GeometricShape = memo(GeometricShapeComponent);
 
-
-const PageNotFound = ()=> {
+const PageNotFound = () => {
   const navigate = useNavigate();
 
-  const handleBackClick = ()=>{
+  const handleBackClick = () => {
     navigate(-1);
-  }
+  };
   const handleHomeClick = () => {
     navigate('/');
   };
@@ -124,12 +133,20 @@ const PageNotFound = ()=> {
 
         {/* ✅ Replaced with ActionButton component */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <ActionButton icon={Home} label="Back to Home" variant="primary" handleClick={handleHomeClick} />
+          <ActionButton
+            icon={Home}
+            label="Back to Home"
+            variant="primary"
+            handleClick={handleHomeClick}
+          />
           {/* <ActionButton icon={Search} label="Search" variant="secondary" /> */}
-          <ActionButton icon={ArrowLeft} label="Go Back" variant="secondary" handleClick={handleBackClick} />
+          <ActionButton
+            icon={ArrowLeft}
+            label="Go Back"
+            variant="secondary"
+            handleClick={handleBackClick}
+          />
         </div>
-
-       
       </div>
 
       {/* ✅ Grid overlay retained */}
@@ -145,7 +162,6 @@ const PageNotFound = ()=> {
       </div>
     </div>
   );
-}
-
+};
 
 export default memo(PageNotFound);
