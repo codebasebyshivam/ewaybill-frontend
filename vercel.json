@@ -5,11 +5,15 @@
       "destination": "/index.html"
     }
   ],
-  "headers":"/sitemap.xml",
+  "headers":[
+    {
+      "source":"/sitemap.xml",
   "headers":[
     {
       "key":"Content-Type",
       "value":"application/xml",
     }
+  ]
+}
   ]
 }
