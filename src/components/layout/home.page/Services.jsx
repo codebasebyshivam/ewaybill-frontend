@@ -6,7 +6,6 @@ import fastag_api from '/assets/fastag-api.webp';
 import rc_api from '/assets/rc-api.webp';
 import dl_api from '/assets/dl-api.webp';
 
-
 const services = [
   {
     id: 'ewaybill',
@@ -50,10 +49,10 @@ const Services = ({ isLoaded }) => {
 
   return (
     <div className='relative bg-white bg-fixed bg-left bg-no-repeat bg-contain md:bg-[url("/assets/PathFillGreenBg.svg")] p-4 md:p-8 '>
-
       <section
-        className={`transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
+        className={`transition-all duration-1000 ${
+          isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}
       >
         <div className="text-center mb-12">
           <h3 className="text-3xl md:text-4xl font-bold font-poppins text-h1 mb-4">
@@ -73,10 +72,10 @@ const Services = ({ isLoaded }) => {
                 <ScrollReveal delay={getDelay(i)} key={service.id}>
                   <div className="group relative p-4 cursor-pointer service-card">
                     <div
-                      className={`flex items-start md:space-x-6 flex-col ${isImageLeft ? 'md:flex-row-reverse' : 'md:flex-row'
-                        }`}
+                      className={`flex items-start md:space-x-6 flex-col ${
+                        isImageLeft ? 'md:flex-row-reverse' : 'md:flex-row'
+                      }`}
                     >
-
                       <img
                         src={service.url}
                         loading="lazy"

@@ -13,7 +13,6 @@ import {
   Phone,
 } from 'lucide-react';
 
-
 const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
 // Yup validation schema
@@ -129,11 +128,11 @@ export default function RegisterForm({ setIsLogin }) {
               />
             </div>
             {errors.email && (
-              <p className="text-red-600 mt-1 text-sm">{errors.email.message}</p>
+              <p className="text-red-600 mt-1 text-sm">
+                {errors.email.message}
+              </p>
             )}
           </div>
-
-
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
@@ -159,7 +158,9 @@ export default function RegisterForm({ setIsLogin }) {
               />
             </div>
             {errors.phone && (
-              <p className="text-red-600 mt-1 text-sm">{errors.phone.message}</p>
+              <p className="text-red-600 mt-1 text-sm">
+                {errors.phone.message}
+              </p>
             )}
           </div>
 
@@ -182,39 +183,40 @@ export default function RegisterForm({ setIsLogin }) {
               />
             </div>
             {errors.company && (
-            <p className="text-red-600 mt-1 text-sm">{errors.company.message}</p>
-          )}
+              <p className="text-red-600 mt-1 text-sm">
+                {errors.company.message}
+              </p>
+            )}
           </div>
         </div>
 
-    
-
         <div className="grid md:grid-cols-2 gap-4">
-        <div className="relative group col-span-2">
-          {/* <label
+          <div className="relative group col-span-2">
+            {/* <label
             htmlFor="gstin"
             className="font-nunito hidden md:block text-sm font-medium text-gray-700 mb-2"
           >
             Gstin
           </label> */}
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
-            <input
-              id="gstin"
-              type="text"
-              placeholder="Enter GST number"
-              {...register('gstin')}
-              className={`outline-none w-full pl-10 pr-4 py-3 border rounded-xl transition-all duration-200
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
+              <input
+                id="gstin"
+                type="text"
+                placeholder="Enter GST number"
+                {...register('gstin')}
+                className={`outline-none w-full pl-10 pr-4 py-3 border rounded-xl transition-all duration-200
               focus:ring-2 focus:ring-emerald-500 focus:border-transparent
               ${errors.gstin ? 'border-red-500 hover:border-red-600' : 'border-gray-300 hover:border-emerald-300'}`}
-              aria-invalid={errors.gstin ? 'true' : 'false'}
-            />
+                aria-invalid={errors.gstin ? 'true' : 'false'}
+              />
+            </div>
+            {errors.gstin && (
+              <p className="text-red-600 mt-1 text-sm">
+                {errors.gstin.message}
+              </p>
+            )}
           </div>
-          {errors.gstin && (
-            <p className="text-red-600 mt-1 text-sm">{errors.gstin.message}</p>
-          )}
-        </div>
-
 
           <div className="relative group col-span-2">
             {/* <label
@@ -315,12 +317,14 @@ export default function RegisterForm({ setIsLogin }) {
             </a>
           </label>
         </div>
-        {errors.terms &&  <p className="text-red-600 mt-1 text-sm">{errors.terms.message}</p>}
+        {errors.terms && (
+          <p className="text-red-600 mt-1 text-sm">{errors.terms.message}</p>
+        )}
 
         <button
           type="submit"
           aria-label="Register Account"
-          disabled={isLoading }
+          disabled={isLoading}
           className="font-nunito w-full bg-action-button-gradient text-white py-3 rounded-xl font-semibold text-base shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           {isLoading ? (
@@ -333,8 +337,13 @@ export default function RegisterForm({ setIsLogin }) {
           )}
         </button>
       </form>
-      <p className='text-center text-gray-600 text-sm my-3 md:hidden'>OR</p>
-      <p className='text-center font-normal font-poppins text-sm text-t1 md:hidden '>Already have an account ? <span className='text-blue-500 text-xs' onClick={handleLoginPage} >Login</span></p>
+      <p className="text-center text-gray-600 text-sm my-3 md:hidden">OR</p>
+      <p className="text-center font-normal font-poppins text-sm text-t1 md:hidden ">
+        Already have an account ?{' '}
+        <span className="text-blue-500 text-xs" onClick={handleLoginPage}>
+          Login
+        </span>
+      </p>
     </>
   );
 }

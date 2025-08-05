@@ -1,15 +1,5 @@
-import {
-  memo,
-  useState,
-  useEffect,
-  lazy,
-  Suspense,
-  useCallback,
-} from 'react';
-import {
-  UserPlus,
-  LogIn,
-} from 'lucide-react';
+import { memo, useState, useEffect, lazy, Suspense, useCallback } from 'react';
+import { UserPlus, LogIn } from 'lucide-react';
 import FeaturesList from '../components/layout/login.page/FeaturesList';
 import kats_logo from '../assets/kats_logo.svg';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +16,6 @@ const RegisterFormSkeleton = lazy(
 import useAuthStore from '../store/useAuthStore';
 import useSession from '../hooks/useSession';
 
-
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [typingAnimation, setTypingAnimation] = useState('');
@@ -35,12 +24,11 @@ const LoginPage = () => {
   const { checkSession } = useSession();
   const [isCheckingSession, setIsCheckingSession] = useState(true);
 
-
   useEffect(() => {
     (async () => {
       try {
         setIsCheckingSession(true);
-        await checkSession();  // sets user inside useAuthStore
+        await checkSession(); // sets user inside useAuthStore
       } catch (err) {
         // optional: handle errors
       } finally {
@@ -56,11 +44,9 @@ const LoginPage = () => {
     }
   }, [user]);
 
-
   // Memoized handler to prevent new function creation every render
   const handleSetLogin = useCallback(() => setIsLogin(true), []);
   const handleSetRegister = useCallback(() => setIsLogin(false), []);
-
 
   // Typing animation for welcome text
   useEffect(() => {
@@ -78,8 +64,6 @@ const LoginPage = () => {
     return () => clearInterval(interval);
   }, [isLogin]);
 
-
-
   if (isCheckingSession) {
     return (
       <div className="h-screen flex items-center justify-center">
@@ -88,17 +72,13 @@ const LoginPage = () => {
     );
   }
 
-
-
   return (
     <div className="h-[100dvh]">
-
-
       <div className="grid lg:grid-cols-2 h-full ">
         {/* Left Side - Login/Register Form */}
 
         <div className=" lg:bg-none bg-[url('/assets/login-bg-pattern.webp')] mx-auto w-full sm:w-full   lg:w-full  xl:w-3/4  lg:p-6 transform  transition-transform duration-300  flex items-center justify-center flex-col  ">
-          <div className='bg-white p-4 rounded-md sm:w-3/4 lg:w-full'>
+          <div className="bg-white p-4 rounded-md sm:w-3/4 lg:w-full">
             {/* Logo */}
             <div className="mb-8">
               <div className="flex items-center justify-between space-x-3">
@@ -129,10 +109,11 @@ const LoginPage = () => {
               <button
                 aria-label="Login Tab"
                 onClick={handleSetLogin}
-                className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${isLogin
-                  ? 'bg-action-button-gradient text-white shadow-sm'
-                  : 'text-gray-800 hover:text-gray-900'
-                  }`}
+                className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                  isLogin
+                    ? 'bg-action-button-gradient text-white shadow-sm'
+                    : 'text-gray-800 hover:text-gray-900'
+                }`}
               >
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
@@ -140,10 +121,11 @@ const LoginPage = () => {
               <button
                 aria-label="Register Tab"
                 onClick={handleSetRegister}
-                className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${!isLogin
-                  ? 'bg-action-button-gradient text-white shadow-sm'
-                  : 'text-gray-800 hover:text-gray-900'
-                  }`}
+                className={`font-nunito flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                  !isLogin
+                    ? 'bg-action-button-gradient text-white shadow-sm'
+                    : 'text-gray-800 hover:text-gray-900'
+                }`}
               >
                 <UserPlus className="w-4 h-4" />
                 <span>Register</span>
@@ -180,7 +162,7 @@ const LoginPage = () => {
             </p>
 
             {isLogin ? (
-              <img src='/assets/login_img.webp' alt='services-provided' />
+              <img src="/assets/login_img.webp" alt="services-provided" />
             ) : (
               <>
                 <FeaturesList />

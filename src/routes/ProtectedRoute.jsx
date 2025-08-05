@@ -1,4 +1,4 @@
-import {memo,useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
 
@@ -16,7 +16,6 @@ const ProtectedRoute = ({ children, redirect_route }) => {
   if (!hasFetched || isLoading) {
     return <div>Checking authentication...</div>;
   }
-
 
   // ❌ After fetching, still no user → redirect
   if (!user) {

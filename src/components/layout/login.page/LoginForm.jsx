@@ -18,8 +18,6 @@ import api from '../../../api/axios.instance';
 import useAuthStore from '../../../store/useAuthStore';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
-
 const schema = yup
   .object({
     company: yup.string().required('Company is required'),
@@ -38,7 +36,9 @@ export default function LoginForm({ setIsLogin }) {
   const [openPopup, setOpenPopup] = useState(false);
   const [companies, setCompanies] = useState([]);
   const [financialYears, setFinancialYears] = useState([]);
-  const [rememberMe, setRememberMe] = useState(JSON.parse(localStorage.getItem('rememberMe')) || false);
+  const [rememberMe, setRememberMe] = useState(
+    JSON.parse(localStorage.getItem('rememberMe')) || false
+  );
 
   const navigate = useNavigate();
   const location = useLocation(); // access state passed from Navigate
@@ -57,12 +57,7 @@ export default function LoginForm({ setIsLogin }) {
     mode: 'onChange',
   });
 
-
-
-
-
   const selectedCompanyId = watch('company')?.split('_')[0]; // Extract company ID from selected value
-
 
   const handleForgotPopup = useCallback(() => {
     setOpenPopup(false);
@@ -72,14 +67,11 @@ export default function LoginForm({ setIsLogin }) {
     setOpenPopup(true);
   }, []);
 
-
-
-
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
         const response = await api.get('/api/companies-list', {
-          id: register('company').value
+          id: register('company').value,
         });
         const companies = response.data?.cmp_list || [];
         setCompanies(companies);
@@ -110,12 +102,9 @@ export default function LoginForm({ setIsLogin }) {
     fetchFinancialYears();
   }, [selectedCompanyId]);
 
-
-
-
   const onSubmit = async (data) => {
     try {
-      setIsLoading(true);    // Optional: store flag in localStorage
+      setIsLoading(true); // Optional: store flag in localStorage
       const response = await api.post('/api/login', {
         ...data,
         rememberMe,
@@ -126,14 +115,13 @@ export default function LoginForm({ setIsLogin }) {
         localStorage.removeItem('rememberMe');
       }
       setUser(response.data.user_info);
-      navigate(from, { replace: true })
+      navigate(from, { replace: true });
     } catch (error) {
-      console.error(`error`);
+      console.error(`error ${error}`);
     } finally {
       setIsLoading(false);
     }
   };
-
 
   const handleRegisterPage = useCallback(() => {
     setIsLogin(false);
@@ -146,8 +134,6 @@ export default function LoginForm({ setIsLogin }) {
         className="space-y-5 animate-fadeIn"
         noValidate
       >
-
-
         {/* Username */}
         <div className="relative group">
           {/* <label
@@ -170,7 +156,9 @@ export default function LoginForm({ setIsLogin }) {
             />
           </div>
           {errors.username && (
-            <p className="text-red-600 mt-1 text-sm">{errors.username.message}</p>
+            <p className="text-red-600 mt-1 text-sm">
+              {errors.username.message}
+            </p>
           )}
         </div>
 
@@ -208,10 +196,11 @@ export default function LoginForm({ setIsLogin }) {
             </button>
           </div>
           {errors.password && (
-            <p className="text-red-600 mt-1 text-sm">{errors.password.message}</p>
+            <p className="text-red-600 mt-1 text-sm">
+              {errors.password.message}
+            </p>
           )}
         </div>
-
 
         {/* Company */}
         <div className="relative group">
@@ -234,14 +223,19 @@ export default function LoginForm({ setIsLogin }) {
             >
               <option value="">Select a company</option>
               {companies.map((company) => (
-                <option key={company.id} value={`${company.id}_${company.Company}`}>
+                <option
+                  key={company.id}
+                  value={`${company.id}_${company.Company}`}
+                >
                   {company.Company}
                 </option>
               ))}
             </select>
           </div>
           {errors.company && (
-            <p className="text-red-600 mt-1 text-sm">{errors.company.message}</p>
+            <p className="text-red-600 mt-1 text-sm">
+              {errors.company.message}
+            </p>
           )}
         </div>
 
@@ -286,7 +280,10 @@ export default function LoginForm({ setIsLogin }) {
               id="remember"
               type="checkbox"
               checked={rememberMe}
-              onChange={(e) => { setRememberMe(e.target.checked);localStorage.setItem('rememberMe', e.target.checked) }}
+              onChange={(e) => {
+                setRememberMe(e.target.checked);
+                localStorage.setItem('rememberMe', e.target.checked);
+              }}
               className="w-4 h-4 accent-t1 text-t1 hover:accent-t1 border-gray-300 rounded"
             />
             <span className="font-nunito ml-2 text-sm text-gray-600">
@@ -299,10 +296,6 @@ export default function LoginForm({ setIsLogin }) {
           >
             Forgot password?
           </span>
-
-
-
-
         </div>
 
         {/* Submit */}
@@ -321,21 +314,26 @@ export default function LoginForm({ setIsLogin }) {
             </>
           )}
         </button>
-      </form >
-      <p className='text-center text-gray-600 text-sm my-3 md:hidden'>OR</p>
-      <p className='text-center font-normal font-poppins text-sm text-t1 md:hidden '>Want to register ? <span className='text-blue-500 text-xs' onClick={handleRegisterPage} >Create Free Account</span></p>
+      </form>
+      <p className="text-center text-gray-600 text-sm my-3 md:hidden">OR</p>
+      <p className="text-center font-normal font-poppins text-sm text-t1 md:hidden ">
+        Want to register ?{' '}
+        <span className="text-blue-500 text-xs" onClick={handleRegisterPage}>
+          Create Free Account
+        </span>
+      </p>
 
       {createPortal(
         <CustomModal
           isOpen={openPopup}
           onClose={handleForgotPopup}
-          title='Reset Password'
-          size='sm'
+          title="Reset Password"
+          size="sm"
         >
           <ForgotPasswordModal />
-
-        </CustomModal>, document.body)}
-
+        </CustomModal>,
+        document.body
+      )}
     </>
   );
 }

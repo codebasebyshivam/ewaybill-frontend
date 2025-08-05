@@ -19,10 +19,12 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   animation: shimmer 1.5s infinite;
 }
 
@@ -65,13 +67,11 @@ html {
   animation: draw-line 2s ease forwards;
 }
 
-
 @keyframes draw-line {
   to {
     stroke-dashoffset: 0;
   }
 }
-
 
 /* flip card animation */
 .perspective {
@@ -89,7 +89,6 @@ html {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
-
 
 /* user cannot select content of website */
 body {
